@@ -1,0 +1,49 @@
+version: '2'
+services:
+
+  mysql:
+    image: mysql:8.0.17
+    container_name: 'mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: adminspassword
+      MYSQL_DATABASE: colisDataBase
+    ports:
+      - "3308:3306"
+    networks:
+      - backend
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NICE
+  php:
+    build: php-fpm
+    container_name: 'php'
+    restart: always
+    ports:
+      - '9002:9000'
+    volumes:
+      - ../:/var/www/symfony:cached
+      - ../../logs/symfony:/var/www/symfony/var/logs:cached
+    depends_on:
+      - "mysql"
+    links:
+      - "mysql:mysql"
+    #command: ["./docker/php-fpm/entrypoint.sh"]
+    networks:
+      - backend
+  nginx:
+    build: nginx
+    container_name: 'nginx'
+    restart: always
+    ports:
+      - '8090:80'
+    links:
+      - php
+    volumes_from:
+      - php
+    volumes:
+      - ../../logs/nginx/:/var/log/nginx:cached
+    networks:
+      - backend
+networks:
+    backend :

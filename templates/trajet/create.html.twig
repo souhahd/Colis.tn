@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Trajet!{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="login-form bg-light mt-4 p-4">
+                <form method="post" class="row g-3">
+                    <input type="hidden" name="_token" value="{{ csrf_token('trajet_create') }}">
+                    <div class="col-12">
+                        <h1 class="h2 mb-3 font-weight-normal" style="text-align: center">Ajouter un trajet</h1>
+                    </div>
+
+                    {#                    <div class="col-12"> #}
+                    {#                        {% if error %}#}
+                    {#                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+                    {#                        {% endif %}#}
+                    {#                    </div> #}
+
+                    <div class="col-12">
+                        <label for="tf1" >Address de départ</label>
+                        <input type="text" name="addressdep" id="tf1" class="form-control" required autofocus>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="tf2">Address d'arrvée</label>
+                        <input type="text" name="addressarr" id="tf2" class="form-control" required autofocus>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="tf3">Detour Max</label>
+                        <input type="number" name="detour" id="tf3" class="form-control" required autofocus>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="tf4">Date de départ </label>
+                        <input type="date" name="datedep" id="tf4" class="form-control" required autofocus>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="format" >Format d'objets</label> <br>
+                        <p id="format">
+                            <label for="txs"> <input type="radio" name="formats" value="XS" id="txs"> XS </label> <br>
+                            <label for="ts"><input type="radio" name="formats" value="S" id="ts"> S </label><br>
+                            <label for="tm"><input type="radio" name="formats" value="M" id="tm"> M </label><br>
+                            <label for="tl"><input type="radio" name="formats" value="L" id="tl"> L </label><br>
+                            <label for="txl"><input type="radio" name="formats" value="XL" id="txl"> XL </label><br>
+                            <label for="txxl"><input type="radio" name="formats" value="XXL" id="txxl"> XXL </label><br>
+                        </p>
+                    </div>
+
+                    <div class="col-12" style="text-align: center">
+                        <button class="btn btn-lg btn-primary float-end" type="submit">
+                            Ajouter
+                        </button>
+                        <button class="btn btn-lg btn-primary float-end" type="reset">
+                            Annuler
+                        </button>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

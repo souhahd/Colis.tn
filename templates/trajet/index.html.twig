@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Trajets!{% endblock %}
+{% block body %}
+
+
+     </h1>
+    <a href="{{ path('app_trajet_create') }}">Ajouter un Trajet</a>
+
+    {% for tr in trajet  %}
+        <article>
+            <h1> <a href="{{ url('app_trajet_show', {'id':tr.id}) }}"> {{ tr.lieuDepartTrajet}}  vers {{ tr.lieuArriveeTrajet }} </a> </h1>
+        </article>
+    {% endfor %}
+{% endblock %}

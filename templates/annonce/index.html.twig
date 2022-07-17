@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Annonces!{% endblock %}
+{% block body %}
+    <h1 style="text-align: center">{{ pluralize(annonce|length, 'Annonce', 'Annonces') }} </h1>
+
+
+    <a href="{{ path('app_annonce_create') }}">Ajouter une Annonce</a>
+
+    {% for ann in annonce %}
+        <article>
+            <h1> <a href="{{ url('app_annone_show', {'id':ann.id}) }}"> {{ ann.adresseDepart }}  vers {{ ann.adresseArrivee }} </a> </h1>
+        </article>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Modifier Trajet #' ~ trajet.id  %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="login-form bg-light mt-4 p-4">
+                <form method="post" class="row g-3">
+                    <input type="hidden" name="_token" value="{{ csrf_token('trajet_edit') }}">
+                    <div class="col-12">
+                        <h1 class="h2 mb-3 font-weight-normal" style="text-align: center">Modifier un trajet</h1>
+                    </div>
+
+                    {#                    <div class="col-12"> #}
+                    {#                        {% if error %}#}
+                    {#                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+                    {#                        {% endif %}#}
+                    {#                    </div> #}
+
+                    {{ form_start(trajetForm) }}
+
+                    <div class="col-12">
+                        {{ form_row(trajetForm.lieuDepartTrajet) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(trajetForm.lieuArriveeTrajet) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(trajetForm.detourMaxTrajet) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(trajetForm.dateDepart) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(trajetForm.formatObjet) }}
+                    </div>
+
+
+
+
+                    <div class="col-12" style="text-align: center">
+                        <button class="btn btn-lg btn-primary float-end" type="submit">
+                            Modifier
+                        </button>
+
+                    </div>
+                    {{ form_end(trajetForm) }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trajet n° {{ trajet.id}} {% endblock %}
+{% block body %}
+
+        <article>
+                <h1> {{ trajet.lieuDepartTrajet }}</h1>
+                <h1> {{ trajet.lieuArriveeTrajet }}</h1>
+        </article>
+        <a href="{{ path('app_trajet_edit', {'id': trajet.id}) }}"> Modifier </a>
+        <a href="#" onclick="event.preventDefault(); confirm('Est ce que vous étes sure?') && document.getElementById('js-trajet-delete-form').submit();" > Supprimer </a>
+
+        <form id="js-trajet-delete-form" action="{{ path('app_trajet_delete', {'id': trajet.id}) }}" method="post" style="display: none;">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token('trajet_deletion_' ~ trajet.id) }}">
+                <input type="hidden" name="_method" value="DELETE">
+        </form>
+
+{% endblock %}
