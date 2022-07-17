@@ -81,17 +81,15 @@ class AnnoneController extends AbstractController
      * @Route("/annonce/{id<[0-9]+>}/edit", name="app_annonce_edit", methods={"GET", "PUT", "POST"})
      */
     public function update(Annonce $annonce,Colis $colis, Request $request, EntityManagerInterface $em): Response{
+        if($request->isMethod('POST'))
+        {
+            $data = $request->request->all();
 
-        $form = $this->createForm(ColisFormType::class, $colis);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->flush();
-            $this->addFlash('success','Annonce a été modifié avec sucess.');
-            return $this->render('annonce/show.html.twig',compact('annonce'));
-
+        }else{
+            return $this->render('annonce/show.html.twig', ['annonce'=>$annonce]);
         }
-        return $this->render('annonce/edit.html.twig', ['annonceForm' => $form->createView(),'annonce'=>$annonce]);
+
+
 
 
     }

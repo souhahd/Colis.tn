@@ -17,36 +17,62 @@
                     {#                        {% endif %}#}
                     {#                    </div> #}
 
-                    {{ form_start(annonceForm) }}
-
                     <div class="col-12">
-                        {{ form_row(annonceForm.adresseDepart) }}
+                        <label for="af1" >Address de départ</label>
+                        <input type="text" name="addressdep" id="af1" class="form-control" required autofocus>
                     </div>
 
                     <div class="col-12">
-                        {{ form_row(annonceForm.adresseArrivee) }}
+                        <label for="af2">Address d'arrvée</label>
+                        <input type="text" name="addressarr" id="af2" class="form-control" required autofocus>
                     </div>
 
                     <div class="col-12">
-                        {{ form_row(annonceForm.prixProposee) }}
+                        <label for="af3">Prix proposée</label>
+                        <input type="text" name="prix" id="af3" class="form-control" required autofocus>
                     </div>
 
                     <div class="col-12">
-                        {{ form_row(annonceForm.dateProposee) }}
+                        <label for="af4">Date proposée </label>
+                        <input type="date" name="datepro" id="af4" class="form-control" required autofocus>
                     </div>
 
+                    <div class="col-12">
+                        <label for="cf1">Objet du Colis </label>
+                        <textarea name="objet" id="cf1" class="form-control" required autofocus rows="2"> </textarea>
+                    </div>
 
-
-
-
-
+                    <div class="col-12">
+                        <label for="cf2">Quantité</label>
+                        <input type="number" name="quantite" id="cf2" class="form-control" required autofocus value="{{  }}">
+                    </div>
+                    <div class="col-12">
+                        <label for="cf3">Largeur du Colis </label>
+                        <input type="number" name="largeur" id="cf3" class="form-control" required autofocus>
+                    </div>
+                    <div class="col-12">
+                        <label for="cf6">Longeur du Colis </label>
+                        <input type="number" name="longeur" id="cf6" class="form-control" required autofocus>
+                    </div>
+                    <div class="col-12">
+                        <label for="cf4">Hauteur du Colis </label>
+                        <input type="number" name="hauteur" id="cf4" class="form-control" required autofocus>
+                    </div>
+                    <div class="col-12">
+                        <label for="cf5">Poids Unitaire du Colis </label>
+                        <input type="number" name="poids" id="cf5 " class="form-control" required autofocus>
+                    </div>
                     <div class="col-12" style="text-align: center">
-                        <button class="btn btn-lg btn-primary float-end" type="submit">
-                            Modifier
-                        </button>
+                        <input class="btn btn-lg btn-primary float-end" type="submit"  value="Modifier">
+                        <input class="btn btn-lg btn-primary float-end" type="reset"  value="Annuler">
+
 
                     </div>
-                    {{ form_end(annonceForm) }}
+
+
+
+
+
                 </form>
             </div>
         </div>
