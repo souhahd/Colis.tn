@@ -9,7 +9,11 @@
 
     {% for tr in trajet  %}
         <article>
-            <h1> <a href="{{ url('app_trajet_show', {'id':tr.id}) }}"> {{ tr.lieuDepartTrajet}}  vers {{ tr.lieuArriveeTrajet }} </a> </h1>
+            <h5> <a href="{{ url('app_trajet_show', {'id':tr.id}) }}"> {{ tr.lieuDepartTrajet}}  vers {{ tr.lieuArriveeTrajet }} </a> </h5>
+            <p> Adresse de départ : {{ tr.lieuDepartTrajet }}</p>
+            <p> Adresse d'arrivé : {{ tr.lieuArriveeTrajet }}</p>
+            <p> Crée le {{ tr.dateDepart|ago }}</p>
+            <p> Taille : {{ tr.formatObjet }}</p>
         </article>
     {% endfor %}
 {% endblock %}
