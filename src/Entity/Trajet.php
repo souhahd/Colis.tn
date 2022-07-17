@@ -6,6 +6,7 @@ use App\Entity\Traits\Timestampable;
 use App\Repository\TrajetRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Monolog\DateTimeImmutable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TrajetRepository::class)
@@ -25,16 +26,19 @@ class Trajet
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank
      */
     private $lieuDepartTrajet;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank
      */
     private $lieuArriveeTrajet;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank
      */
     private $detourMaxTrajet;
 
