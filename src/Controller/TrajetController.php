@@ -82,7 +82,7 @@ class TrajetController extends AbstractController
         if($this->isCsrfTokenValid('trajet_deletion_' . $trajet->getId(), $request->request->get('csrf_token'))){
             $em->remove($trajet);
             $em->flush();
-            $this->addFlash('info','Trajet a été supprimé avec sucess.');
+            $this->addFlash('info','Trajet a été supprimé avec success.');
         }
 
 

@@ -5,11 +5,10 @@
 
 
      </h1>
-    <a href="{{ path('app_trajet_create') }}">Ajouter un Trajet</a>
 
     {% for tr in trajet  %}
         <article>
-            <h5> <a href="{{ url('app_trajet_show', {'id':tr.id}) }}"> {{ tr.lieuDepartTrajet}}  vers {{ tr.lieuArriveeTrajet }} </a> </h5>
+            <h5> <a href="{{ url('app_trajet_show', {'id':tr.id}) }}"> Trajet N° : {{ tr.id }} </a> </h5>
             <p> Adresse de départ : {{ tr.lieuDepartTrajet }}</p>
             <p> Adresse d'arrivé : {{ tr.lieuArriveeTrajet }}</p>
             <p> Crée le {{ tr.dateDepart|ago }}</p>

@@ -1,1 +1,35 @@
 {% extends 'layouts/base.html.twig' %}
+
+{% block title %}livraison des colis{% endblock %}
+{% block body %}
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <h1 class="text_shadow" style="text-align: center"> Livraison d'objets encombrants</h1>
+    <h2 class="text_shadow" style="text-align: center">La solution logistique pour commerçants et particuliers</h2>
+
+
+    <br>
+    <br>
+    <br class="hidden-sm">
+    <br class="hidden-sm">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4 padding-l">
+            <a id="btn_send_lg" class="btn btn-outline-info btn-lg btn-block hidden-xs hidden-sm" href="{{ path('app_trajet_create') }}" role="button">
+                <i class="fa fa-suitcase"></i>Proposer mon trajet
+            </a>
+        </div>
+        <div class="col-md-4 padding-l">
+            <a id="btn_bring_lg" class="btn btn-outline-secondary btn-lg btn-block hidden-xs hidden-sm" href="{{ path('app_annonce_create') }}" role="button">
+                <i class="fa fa-car"></i>Demander une livraison
+            </a>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock %}
