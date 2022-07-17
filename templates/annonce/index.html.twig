@@ -1,5 +1,4 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'layouts/base.html.twig' %}
 {% block title %}Liste des Annonces!{% endblock %}
 {% block body %}
     <h1 style="text-align: center">{{ pluralize(annonce|length, 'Annonce', 'Annonces') }} </h1>

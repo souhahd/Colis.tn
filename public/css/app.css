@@ -123,7 +123,20 @@ fieldset[disabled] .btn-question.active {
   color: #ED7458;
   background-color: #FFFFFF;
 }
-
+.alert{
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+.alert-success{
+    background-color: green;
+}
+.alert-danger{
+    background-color: red;
+}
+.alert-info{
+    background-color: blue;
+}
 footer {
     background-color: #efefee;
 }

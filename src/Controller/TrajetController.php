@@ -32,6 +32,7 @@ class TrajetController extends AbstractController
             }
             $em->persist($trajet);
             $em->flush();
+            $this->addFlash('success','Trajet a été crée avec sucess.');
 
             return $this->redirectToRoute('app_trajet');
         }else{
@@ -62,7 +63,7 @@ class TrajetController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-
+            $this->addFlash('success','Trajet a été modifié avec sucess.');
             return $this->render('trajet/show.html.twig',compact('trajet'));
 
         }
@@ -81,6 +82,7 @@ class TrajetController extends AbstractController
         if($this->isCsrfTokenValid('trajet_deletion_' . $trajet->getId(), $request->request->get('csrf_token'))){
             $em->remove($trajet);
             $em->flush();
+            $this->addFlash('info','Trajet a été supprimé avec sucess.');
         }
 
 
