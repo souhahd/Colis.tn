@@ -26,6 +26,7 @@ class TrajetFormType extends AbstractType
             'XL'=> 'XL',
             'XXL'=> 'XXL',
         )
+
     ))
             ->getForm()
 

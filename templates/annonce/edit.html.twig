@@ -4,7 +4,7 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="login-form bg-light mt-4 p-4">
+            <div class="col-md-6 mx-auto bg-light mt-4 p-4">
                 <form method="post" class="row g-3">
                     <input type="hidden" name="_token" value="{{ csrf_token('annonce_edit') }}">
                     <div class="col-12">
@@ -19,52 +19,64 @@
 
                     <div class="col-12">
                         <label for="af1" >Address de départ</label>
-                        <input type="text" name="addressdep" id="af1" class="form-control" required autofocus>
+                        <input type="text" name="addressdep" id="af1" class="form-control" required autofocus value="{{ annonce.adresseDepart }}">
                     </div>
 
                     <div class="col-12">
                         <label for="af2">Address d'arrvée</label>
-                        <input type="text" name="addressarr" id="af2" class="form-control" required autofocus>
+                        <input type="text" name="addressarr" id="af2" class="form-control" required autofocus value="{{ annonce.adresseArrivee }}">
                     </div>
 
                     <div class="col-12">
                         <label for="af3">Prix proposée</label>
-                        <input type="text" name="prix" id="af3" class="form-control" required autofocus>
+                        <input type="text" name="prix" id="af3" class="form-control" required autofocus value="{{ annonce.prixProposee }}">
                     </div>
 
                     <div class="col-12">
                         <label for="af4">Date proposée </label>
-                        <input type="date" name="datepro" id="af4" class="form-control" required autofocus>
+                        <input type="date" name="datepro" id="af4" class="form-control" required autofocus  value= "{{ annonce.dateProposee.format('m/d/Y') }}">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="ifc" >Image de Colis</label>
+
+                        <input class="file-upload-input form-control" type="file" name="imagecolis" id="ifc" accept="Image/*" value="{{ annonce.getIdColis.getValues.0.image }}">
                     </div>
 
                     <div class="col-12">
                         <label for="cf1">Objet du Colis </label>
-                        <textarea name="objet" id="cf1" class="form-control" required autofocus rows="2"> </textarea>
+                        <input type="text" name="objet" id="cf1" class="form-control" required autofocus value="{{ annonce.getIdColis.getValues.0.objetColis }}">
+
+                    </div>
+
+                    <div class="col-12">
+                        <label for="cf11">Description du Colis </label>
+                        <textarea name="description" id="cf11" class="form-control" required autofocus rows="2"> {{ annonce.getIdColis.getValues.0.descriptionColis }} </textarea>
                     </div>
 
                     <div class="col-12">
                         <label for="cf2">Quantité</label>
-                        <input type="number" name="quantite" id="cf2" class="form-control" required autofocus value="{{  }}">
+                        <input type="number" name="quantite" id="cf2" class="form-control" required autofocus value="{{ annonce.getIdColis.getValues.0.quantiteColis }}">
                     </div>
                     <div class="col-12">
                         <label for="cf3">Largeur du Colis </label>
-                        <input type="number" name="largeur" id="cf3" class="form-control" required autofocus>
+                        <input type="number" name="largeur" id="cf3" class="form-control" required autofocus value="{{ annonce.getIdColis.getValues.0.largeurColis }}">
                     </div>
                     <div class="col-12">
                         <label for="cf6">Longeur du Colis </label>
-                        <input type="number" name="longeur" id="cf6" class="form-control" required autofocus>
+                        <input type="number" name="longeur" id="cf6" class="form-control" required autofocus value="{{ annonce.getIdColis.getValues.0.longeurColis }}">
                     </div>
                     <div class="col-12">
                         <label for="cf4">Hauteur du Colis </label>
-                        <input type="number" name="hauteur" id="cf4" class="form-control" required autofocus>
+                        <input type="number" name="hauteur" id="cf4" class="form-control" required autofocus value="{{ annonce.getIdColis.getValues.0.hauteurColis }}">
                     </div>
                     <div class="col-12">
                         <label for="cf5">Poids Unitaire du Colis </label>
-                        <input type="number" name="poids" id="cf5 " class="form-control" required autofocus>
+                        <input type="number" name="poids" id="cf5 " class="form-control" required autofocus value="{{ annonce.getIdColis.getValues.0.poidsUnitaireColis }}">
                     </div>
                     <div class="col-12" style="text-align: center">
                         <input class="btn btn-lg btn-primary float-end" type="submit"  value="Modifier">
-                        <input class="btn btn-lg btn-primary float-end" type="reset"  value="Annuler">
+                        
 
 
                     </div>

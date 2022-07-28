@@ -26,29 +26,36 @@ class Trajet
 
     /**
      * @ORM\Column(type="string", length=20)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Attention Lieu de depart vide!")
      */
     private $lieuDepartTrajet;
 
     /**
      * @ORM\Column(type="string", length=20)
-     * @Assert\NotBlank
+     * @Assert\NotBlank(message="Attention Lieu d'arrivée vide!")
      */
     private $lieuArriveeTrajet;
 
     /**
      * @ORM\Column(type="float")
-     * @Assert\NotBlank
+     * @Assert\Type(
+     *     type="float",
+     *     message="non valide"
+     * )
+     * @Assert\NotBlank (message="Attention detour max vide!")
+     * @Assert\Positive  (message="Attention detour max doit être positif!")
      */
     private $detourMaxTrajet;
 
     /**
      * @ORM\Column(type="date")
+     *
      */
     private $dateDepart;
 
     /**
      * @ORM\Column(type="string", length=3)
+     * @Assert\Choice({"XS","S","M","L","XL","XXL"})
      */
     private $formatObjet;
 
@@ -64,7 +71,7 @@ class Trajet
         return $this->lieuDepartTrajet;
     }
 
-    public function setLieuDepartTrajet(string $lieuDepartTrajet): self
+    public function setLieuDepartTrajet(?string $lieuDepartTrajet): self
     {
         $this->lieuDepartTrajet = $lieuDepartTrajet;
 
@@ -76,7 +83,7 @@ class Trajet
         return $this->lieuArriveeTrajet;
     }
 
-    public function setLieuArriveeTrajet(string $lieuArriveeTrajet): self
+    public function setLieuArriveeTrajet(?string $lieuArriveeTrajet): self
     {
         $this->lieuArriveeTrajet = $lieuArriveeTrajet;
 
@@ -88,7 +95,7 @@ class Trajet
         return $this->detourMaxTrajet;
     }
 
-    public function setDetourMaxTrajet(float $detourMaxTrajet): self
+    public function setDetourMaxTrajet(?float $detourMaxTrajet): self
     {
         $this->detourMaxTrajet = $detourMaxTrajet;
 
@@ -100,7 +107,7 @@ class Trajet
         return $this->dateDepart;
     }
 
-    public function setDateDepart(\DateTimeInterface $dateDepart): self
+    public function setDateDepart(?\DateTimeInterface $dateDepart): self
     {
         $this->dateDepart = $dateDepart;
 
@@ -112,7 +119,7 @@ class Trajet
         return $this->formatObjet;
     }
 
-    public function setFormatObjet(string $formatObjet): self
+    public function setFormatObjet(?string $formatObjet): self
     {
         $this->formatObjet = $formatObjet;
 

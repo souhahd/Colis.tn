@@ -26,13 +26,13 @@ class TrajetController extends AbstractController
             if ($this->isCsrfTokenValid('trajet_create',$data['_token'])){
                 $trajet->setLieuDepartTrajet($data['addressdep']);
                 $trajet->setLieuArriveeTrajet($data['addressarr']);
-                $trajet->setDetourMaxTrajet($data['detour']);
-                $trajet->setDateDepart(DateTime::createFromFormat('Y-m-d', $data['datedep']));
+                $trajet->setDetourMaxTrajet((float)$data['detour']);
+                $trajet->setDateDepart(DateTime::createFromFormat('Y-m-d',$data['datedep']));
                 $trajet->setFormatObjet($data['formats']);
             }
             $em->persist($trajet);
             $em->flush();
-            $this->addFlash('success','Trajet a été crée avec sucess.');
+            $this->addFlash('success','Trajet a été crée avec success.');
 
             return $this->redirectToRoute('app_trajet');
         }else{
@@ -63,7 +63,7 @@ class TrajetController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
-            $this->addFlash('success','Trajet a été modifié avec sucess.');
+            $this->addFlash('success','Trajet a été modifié avec success.');
             return $this->render('trajet/show.html.twig',compact('trajet'));
 
         }

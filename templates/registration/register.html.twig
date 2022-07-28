@@ -10,7 +10,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="login-form bg-light mt-4 p-4">
+        <div class="col-md-6 mx-auto bg-light mt-4 p-4">
             <form method="post" class="row g-3">
                 <div class="col-12">
                      <h1 class="h2 mb-3 font-weight-normal" style="text-align: center">Inscription</h1>
@@ -53,7 +53,7 @@
                     {{ form_row(registrationForm.agreeTerms) }}
 
                     <div class="col-12" style="text-align: center">
-                        <input class="btn btn-lg btn-primary float-end" type="submit"  value="Valider">
+                        <input class="btn btn-lg btn-primary float-end" type="submit"  value="Valider" formnovalidate>
                         <input class="btn btn-lg btn-primary float-end" type="reset"  value="Annuler">
 
 

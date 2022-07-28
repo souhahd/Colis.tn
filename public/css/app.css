@@ -135,7 +135,7 @@ fieldset[disabled] .btn-question.active {
     background-color: red;
 }
 .alert-info{
-    background-color: blue;
+    background-color: gray;
 }
 footer {
     background-color: #efefee;

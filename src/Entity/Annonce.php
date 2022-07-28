@@ -6,6 +6,7 @@ use App\Repository\AnnonceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -21,26 +22,33 @@ class Annonce
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Attention l'adresse de départ doit être non vide!")
      */
     private $adresseDepart;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="Attention l'adresse d'arrivé doit être non vide!")
      */
     private $adresseArrivee;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank(message="Le prix doit être non vide! ")
+     * @Assert\Positive(message="Le prix doit être positif!")
+     * @Assert\NotNull (message="Le prix doit être non nulle!")
      */
     private $prixProposee;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\DateTime (message="Cette valeur n'est pas une date valide!")
+     *
      */
     private $dateProposee;
 
     /**
-     * @ORM\OneToMany(targetEntity=Colis::class, mappedBy="idAnnonce", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Colis::class, mappedBy="idAnnonce", orphanRemoval=true, cascade={"all"})
      */
     private $idColis;
 

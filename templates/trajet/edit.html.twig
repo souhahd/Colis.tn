@@ -4,21 +4,14 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="login-form bg-light mt-4 p-4">
+            <div class="col-md-6 mx-auto bg-light mt-4 p-4">
                 <form method="post" class="row g-3">
                     <input type="hidden" name="_token" value="{{ csrf_token('trajet_edit') }}">
                     <div class="col-12">
                         <h1 class="h2 mb-3 font-weight-normal" style="text-align: center">Modifier un trajet</h1>
                     </div>
 
-                    {#                    <div class="col-12"> #}
-                    {#                        {% if error %}#}
-                    {#                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
-                    {#                        {% endif %}#}
-                    {#                    </div> #}
-
-                    {{ form_start(trajetForm) }}
-
+                {{ form_start(trajetForm) }}
                     <div class="col-12">
                         {{ form_row(trajetForm.lieuDepartTrajet) }}
                     </div>
@@ -39,14 +32,11 @@
                         {{ form_row(trajetForm.formatObjet) }}
                     </div>
 
-                    <div class="col-12">
-                        {{ form_row(trajetForm.objetColis) }}
-                    </div>
 
 
 
                     <div class="col-12" style="text-align: center">
-                        <button class="btn btn-lg btn-primary float-end" type="submit">
+                        <button class="btn btn-lg btn-primary float-end" type="submit" formnovalidate >
                             Modifier
                         </button>
 

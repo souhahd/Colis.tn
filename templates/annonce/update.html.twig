@@ -1,0 +1,76 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title 'Modifier Annonce #' ~ annonce.id  %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="login-form bg-light mt-4 p-4">
+                <form method="post" class="row g-3">
+                    <input type="hidden" name="_token" value="{{ csrf_token('annonce_update') }}">
+                    <div class="col-12">
+                        <h1 class="h2 mb-3 font-weight-normal" style="text-align: center">Modifier une annonce </h1>
+                    </div>
+
+                    {#                    <div class="col-12"> #}
+                    {#                        {% if error %}#}
+                    {#                            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+                    {#                        {% endif %}#}
+                    {#                    </div> #}
+
+                    {{ form_start(annonceForm) }}
+
+                    <div class="col-12">
+                        {{ form_row(annonceForm.adresseDepart) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(annonceForm.adresseArrivee) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(annonceForm.prixProposee) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(annonceForm.dateProposee) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(annonceForm.imageColis) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(annonceForm.objetColis) }}
+                    </div>
+                    <div class="col-12">
+                        {{ form_row(annonceForm.descriptionColis) }}
+                    </div>
+                    <div class="col-12">
+                        {{ form_row(annonceForm.quantiteColis) }}
+                    </div>
+                    <div class="col-12">
+                        {{ form_row(annonceForm.largeurColis) }}
+                    </div>
+                    <div class="col-12">
+                        {{ form_row(annonceForm.longeurColis) }}
+                    </div>
+                    <div class="col-12">
+                        {{ form_row(annonceForm.hauteurColis) }}
+                    </div>
+                    <div class="col-12">
+                        {{ form_row(annonceForm.poidsUnitaireColis) }}
+                    </div>
+
+
+                    <div class="col-12" style="text-align: center">
+                        <button class="btn btn-lg btn-primary float-end" type="submit">
+                            Modifier
+                        </button>
+
+                    </div>
+                    {{ form_end(annonceForm) }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

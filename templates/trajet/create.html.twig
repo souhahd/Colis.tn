@@ -4,8 +4,8 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <div class="login-form bg-light mt-4 p-4">
-                <form method="post" class="row g-3">
+            <div class="col-md-6 mx-auto bg-light mt-4 p-4">
+                <form method="post" class="row g-3" novalidate>
                     <input type="hidden" name="_token" value="{{ csrf_token('trajet_create') }}">
                     <div class="col-12">
                         <h1 class="h2 mb-3 font-weight-normal" style="text-align: center">Ajouter un trajet</h1>
@@ -39,20 +39,19 @@
 
                     <div class="col-12">
                         <label for="format" >Format d'objets</label> <br>
-                        <p id="format">
-                            <label for="txs"> <input type="radio" name="formats" value="XS" id="txs"> XS </label> <br>
-                            <label for="ts"><input type="radio" name="formats" value="S" id="ts"> S </label><br>
-                            <label for="tm"><input type="radio" name="formats" value="M" id="tm"> M </label><br>
-                            <label for="tl"><input type="radio" name="formats" value="L" id="tl"> L </label><br>
-                            <label for="txl"><input type="radio" name="formats" value="XL" id="txl"> XL </label><br>
-                            <label for="txxl"><input type="radio" name="formats" value="XXL" id="txxl"> XXL </label><br>
+                        <p id="format" class="row align-items-center">
+                            <label for="txs" class="col-4"> <input type="radio" name="formats" value="XS" id="txs"> XS </label> <br>
+                            <label for="ts" class="col-4"><input type="radio" name="formats" value="S" id="ts"> S </label><br>
+                            <label for="tm" class="col-4"><input type="radio" name="formats" value="M" id="tm"> M </label><br>
+                            <label for="tl" class="col-4"><input type="radio" name="formats" value="L" id="tl" checked> L </label><br>
+                            <label for="txl" class="col-4"><input type="radio" name="formats" value="XL" id="txl"> XL </label><br>
+                            <label for="txxl" class="col-4"><input type="radio" name="formats" value="XXL" id="txxl"> XXL </label><br>
                         </p>
                     </div>
 
                     <div class="col-12" style="text-align: center">
-                        <button class="btn btn-lg btn-primary float-end" type="submit">
-                            Ajouter
-                        </button>
+                        <input class="btn btn-lg btn-primary float-end" type="submit"  value="Ajouter">
+
                         <button class="btn btn-lg btn-primary float-end" type="reset">
                             Annuler
                         </button>

@@ -2,7 +2,16 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Bienvennue!{% endblock %}</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#1890c2">
+    <meta name="msapplication-TileColor" content="#dbd7d7">
+    <meta name="theme-color" content="#ffffff">
+
     {% block stylesheets %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Spartan&display=swap">
@@ -12,37 +21,14 @@
     {% endblock %}
 </head>
 <body class="flex flex-col justify-between items-center min-h-screen">
-<main role="main" class="my-6">
-<nav class="navbar navbar-light bg-light" style="height: 80px; background-color: #e3f2fd;">
-    <a class="navbar-brand" href="{{ path('app_home') }}">
-        <i style="color: #444; font-size: 2rem;" class="pb-1 fad fa-cauldron"></i>
-        <p class="pl-2 d-inline font-weight-bold" style="color: #444;">COLIS.TN </p>
-    </a>
-                {%  if is_granted('ROLE_ADMIN') %}
-                    <a class="nav-link" href="{{ path('app_user') }}">Users</a>
-                {% endif %}
-                <a class="nav-link" href="{{ path('app_trajet') }}">Trajets</a>
-                <a class="nav-link" href="{{ path('app_annonce') }}">Annonces</a>
-                <a class="nav-link" href="{{ path('app_blog') }}">Blog</a>
 
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <a class="nav-link text-black-50" href="{{ path('app_logout') }}">Se deconnecter</a>
-        {% else %}
-            <a class="nav-link text-black-50" href="{{ path('app_login') }}">Se connecter</a>
-            <a href="{{ path('app_register') }}" class="nav-link text-black-50">Inscription</a>
-        {% endif %}
-</nav>
-
-
+{{ include('layouts/partials/_nav.html.twig') }}
 {{ include('layouts/partials/_flash_messages.html.twig') }}
 
+<main role="main" class="container">
     {% block body %}{% endblock %}
-
 </main>
 
-<footer class="mt-5 p-3 text-center my-6" style=" background-color: #e3f2fd; width: 100%; height: 50px; position: fixed; bottom:0; left:0 ">
-    Made with <i style="color: red;" class="fa fa-heart"></i> by <a style="color: #444; " >HADDAD Souha</a>
-    &copy; Copyright {{ 'now'|date('Y') }}
-</footer>
+{{ include('layouts/partials/_footer.html.twig') }}
 </body>
 </html>
