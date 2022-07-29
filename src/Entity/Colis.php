@@ -66,7 +66,7 @@ class Colis
     private $idAnnonce;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Image(
      *     minHeight=200,
      *     maxHeight=400,

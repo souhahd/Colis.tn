@@ -35,7 +35,7 @@
         "symfony/serializer": "5.4.*",
         "symfony/translation": "5.4.*",
         "symfony/validator": "5.4.*",
-        "symfony/webpack-encore-bundle": "^1.14",
+        "symfony/webpack-encore-bundle": "^1.15",
         "symfony/yaml": "5.4.*",
         "symfonycasts/verify-email-bundle": "^1.10",
         "twig/extra-bundle": "^3.3",

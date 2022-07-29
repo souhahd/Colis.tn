@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg bg-light mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('app_home') }}"> <img src="/images/ColisTN.png"  id="header_not_logged" height="80px;" width="160px;" style="text-align: center" >
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('app_trajet') }}">Trajets</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_annonce') }}">Annonces</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_blog') }}">Blog</a>
+                </li>
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                        <a class="nav-link text-black-50" href=#>Account </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-black-50" href="{{ path('app_logout') }}">Se deconnecter</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a class="nav-link text-black-50" href="{{ path('app_login') }}">Se connecter</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_register') }}" class="nav-link text-black-50">Inscription</a>
+                    </li>
+
+                {% endif %}
+
+
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
