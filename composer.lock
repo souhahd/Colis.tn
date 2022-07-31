@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb62a3393e5c1a20012bfe03b491f17b",
+    "content-hash": "d24dc89811bd4666d7c8301f12e02935",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -7657,16 +7657,16 @@
         },
         {
             "name": "vich/uploader-bundle",
-            "version": "1.19.0",
+            "version": "1.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dustin10/VichUploaderBundle.git",
-                "reference": "56aeadb1365de714f54f4a7c3b6757e8662f4f29"
+                "reference": "6b8ac89b54ee8340e3fc108927b2c20226118436"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/56aeadb1365de714f54f4a7c3b6757e8662f4f29",
-                "reference": "56aeadb1365de714f54f4a7c3b6757e8662f4f29",
+                "url": "https://api.github.com/repos/dustin10/VichUploaderBundle/zipball/6b8ac89b54ee8340e3fc108927b2c20226118436",
+                "reference": "6b8ac89b54ee8340e3fc108927b2c20226118436",
                 "shasum": ""
             },
             "require": {
@@ -7758,9 +7758,9 @@
             ],
             "support": {
                 "issues": "https://github.com/dustin10/VichUploaderBundle/issues",
-                "source": "https://github.com/dustin10/VichUploaderBundle/tree/1.19.0"
+                "source": "https://github.com/dustin10/VichUploaderBundle/tree/1.20.0"
             },
-            "time": "2021-12-23T17:28:12+00:00"
+            "time": "2022-06-29T16:43:34+00:00"
         },
         {
             "name": "webmozart/assert",

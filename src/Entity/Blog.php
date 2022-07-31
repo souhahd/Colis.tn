@@ -24,6 +24,7 @@ class Blog
      */
     private $idArticle;
 
+
     public function __construct()
     {
         $this->idArticle = new ArrayCollection();
@@ -63,4 +64,5 @@ class Blog
 
         return $this;
     }
+
 }
