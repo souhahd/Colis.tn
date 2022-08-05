@@ -58,6 +58,12 @@ class Trajet
      */
     private $formatObjet;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="trajets")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
 
 
     public function getId(): ?int
@@ -121,6 +127,18 @@ class Trajet
     public function setFormatObjet(?string $formatObjet): self
     {
         $this->formatObjet = $formatObjet;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

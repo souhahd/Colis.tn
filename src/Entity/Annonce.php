@@ -52,6 +52,12 @@ class Annonce
      */
     private $idColis;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->idColis = new ArrayCollection();
@@ -136,6 +142,18 @@ class Annonce
                 $idColi->setIdAnnonce(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

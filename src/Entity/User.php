@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\Traits\Timestampable;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -16,6 +18,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  * @Vich\Uploadable
+ * @ORM\HasLifecycleCallbacks
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -100,6 +103,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="boolean")
      */
     private $isVerified = false;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Trajet::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $trajets;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $annonces;
+
+    public function __construct()
+    {
+        $this->trajets = new ArrayCollection();
+        $this->annonces = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -318,6 +337,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    /**
+     * @return Collection<int, Trajet>
+     */
+    public function getTrajets(): Collection
+    {
+        return $this->trajets;
+    }
+
+    public function addTrajet(Trajet $trajet): self
+    {
+        if (!$this->trajets->contains($trajet)) {
+            $this->trajets[] = $trajet;
+            $trajet->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrajet(Trajet $trajet): self
+    {
+        if ($this->trajets->removeElement($trajet)) {
+            // set the owning side to null (unless already changed)
+            if ($trajet->getUser() === $this) {
+                $trajet->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Annonce>
+     */
+    public function getAnnonces(): Collection
+    {
+        return $this->annonces;
+    }
+
+    public function addAnnonce(Annonce $annonce): self
+    {
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces[] = $annonce;
+            $annonce->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnonce(Annonce $annonce): self
+    {
+        if ($this->annonces->removeElement($annonce)) {
+            // set the owning side to null (unless already changed)
+            if ($annonce->getUser() === $this) {
+                $annonce->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 
