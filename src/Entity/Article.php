@@ -8,10 +8,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @ORM\Table(name="article")
+ * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
  */
 class Article
@@ -26,18 +29,20 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank(message="Attention titre vide!")
      */
     private $titreArticle;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Attention Contenu vide!")
      */
     private $contenuArticle;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $visibiliteArticle;
+    private $visibiliteArticle=true;
 
     /**
      * @ORM\Column(type="date")
@@ -46,11 +51,13 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank(message="Attention autheur vide!")
      */
     private $auteurArticle;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Attention source vide!")
      */
     private $sourceArticle;
 
@@ -62,14 +69,13 @@ class Article
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="products", fileNameProperty="imageArticle")
+     * @Vich\UploadableField(mapping="article_image", fileNameProperty="imageArticle")
      *
-     * @var File|null
      */
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageArticle;
 

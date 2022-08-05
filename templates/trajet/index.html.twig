@@ -3,16 +3,35 @@
 {% block title %}Liste des Trajets!{% endblock %}
 {% block body %}
 
+    <div class="container px-4 py-5" id="custom-cards">
+        <h2 class="pb-2 border-bottom" style="text-align: center"> Liste des trajets !</h2>
 
-     </h1>
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+            {% for tr in trajet  %}
+            <div class="col">
+                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg";>
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Taille : {{ tr.formatObjet }}</h2>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <li class="d-flex align-items-center me-3">
+                                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                                <small>{{ tr.lieuDepartTrajet }}</small>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"/></svg>
+                                <small>{{ tr.dateDepart|ago }}</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-    {% for tr in trajet  %}
-        <article>
-            <h5> <a href="{{ url('app_trajet_show', {'id':tr.id}) }}"> Trajet N° : {{ tr.id }} </a> </h5>
-            <p> Adresse de départ : {{ tr.lieuDepartTrajet }}</p>
-            <p> Adresse d'arrivé : {{ tr.lieuArriveeTrajet }}</p>
-            <p> Crée le {{ tr.dateDepart|ago }}</p>
-            <p> Taille : {{ tr.formatObjet }}</p>
-        </article>
-    {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+
+
 {% endblock %}

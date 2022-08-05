@@ -20,24 +20,19 @@ class TrajetController extends AbstractController
      */
     public function create(Request $request, EntityManagerInterface $em): Response
     {
-        if($request->isMethod('POST')){
-            $data = $request->request->all();
-            $trajet = new Trajet();
-            if ($this->isCsrfTokenValid('trajet_create',$data['_token'])){
-                $trajet->setLieuDepartTrajet($data['addressdep']);
-                $trajet->setLieuArriveeTrajet($data['addressarr']);
-                $trajet->setDetourMaxTrajet((float)$data['detour']);
-                $trajet->setDateDepart(DateTime::createFromFormat('Y-m-d',$data['datedep']));
-                $trajet->setFormatObjet($data['formats']);
-            }
+        $trajet = new Trajet();
+        $form = $this->createForm(TrajetFormType::class, $trajet);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $trajet=$form->getData();
             $em->persist($trajet);
             $em->flush();
             $this->addFlash('success','Trajet a été crée avec success.');
 
             return $this->redirectToRoute('app_trajet');
-        }else{
-            return $this->render('trajet/create.html.twig');
         }
+        return $this->render('trajet/create.html.twig', ['trajetForm' => $form->createView()]);
     }
 
     /**

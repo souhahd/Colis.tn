@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Entity\Traits\Timestampable;
 use App\Repository\TrajetRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Monolog\DateTimeImmutable;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
