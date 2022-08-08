@@ -1,1 +1,51 @@
 {% extends 'layouts/base.html.twig' %}
+
+{% block title 'Modifier Trajet #' ~ article.id  %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto bg-light mt-4 p-4">
+                <form method="post" class="row g-3">
+                    <input type="hidden" name="_token" value="{{ csrf_token('article_edit') }}">
+                    <div class="col-12">
+                        <h1 class="h2 mb-3 font-weight-normal" style="text-align: center">Modifier un article</h1>
+                    </div>
+
+                    {{ form_start(formArticle) }}
+                    <div class="col-12">
+                        {{ form_row(formArticle.titreArticle) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(formArticle.imageFile) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(formArticle.contenuArticle) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(formArticle.datePubArticle) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(formArticle.auteurArticle) }}
+                    </div>
+                    <div class="col-12">
+                        {{ form_row(formArticle.sourceArticle) }}
+                    </div>
+
+
+
+
+                    <div class="col-12" style="text-align: center">
+                        <input class="btn btn-lg btn-primary float-end" type="submit"  value="Modifier" formnovalidate>
+
+
+                    </div>
+                    {{ form_end(formArticle) }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

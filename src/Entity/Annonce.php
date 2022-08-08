@@ -47,16 +47,18 @@ class Annonce
      */
     private $dateProposee;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Colis::class, mappedBy="idAnnonce", orphanRemoval=true, cascade={"all"})
-     */
-    private $idColis;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="annonces")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Colis::class, inversedBy="annonce", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $colis;
 
     public function __construct()
     {
@@ -116,35 +118,6 @@ class Annonce
         return $this;
     }
 
-    /**
-     * @return Collection<int, Colis>
-     */
-    public function getIdColis(): Collection
-    {
-        return $this->idColis;
-    }
-
-    public function addIdColi(Colis $idColi): self
-    {
-        if (!$this->idColis->contains($idColi)) {
-            $this->idColis[] = $idColi;
-            $idColi->setIdAnnonce($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdColi(Colis $idColi): self
-    {
-        if ($this->idColis->removeElement($idColi)) {
-            // set the owning side to null (unless already changed)
-            if ($idColi->getIdAnnonce() === $this) {
-                $idColi->setIdAnnonce(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {
@@ -154,6 +127,18 @@ class Annonce
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getColis(): ?Colis
+    {
+        return $this->colis;
+    }
+
+    public function setColis(Colis $colis): self
+    {
+        $this->colis = $colis;
 
         return $this;
     }

@@ -64,11 +64,6 @@ class Colis
      */
     private $poidsUnitaireColis;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="idColis")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $idAnnonce;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -95,6 +90,11 @@ class Colis
      * @var File|null
      */
     private $imageFile;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Annonce::class, mappedBy="colis", cascade={"persist", "remove"})
+     */
+    private $annonce;
 
     public function getId(): ?int
     {
@@ -174,17 +174,6 @@ class Colis
         return $this;
     }
 
-    public function getIdAnnonce(): ?Annonce
-    {
-        return $this->idAnnonce;
-    }
-
-    public function setIdAnnonce(?Annonce $idAnnonce): self
-    {
-        $this->idAnnonce = $idAnnonce;
-
-        return $this;
-    }
 
     public function getImage(): ?string
     {
@@ -226,6 +215,23 @@ class Colis
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function getAnnonce(): ?Annonce
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(Annonce $annonce): self
+    {
+        // set the owning side of the relation if necessary
+        if ($annonce->getColis() !== $this) {
+            $annonce->setColis($this);
+        }
+
+        $this->annonce = $annonce;
+
+        return $this;
     }
 
 }

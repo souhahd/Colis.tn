@@ -1,4 +1,4 @@
-@import "~bootstrap";
+ @import "bootstrap";
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -139,4 +139,25 @@ fieldset[disabled] .btn-question.active {
 }
 footer {
     background-color: #efefee;
+}
+.toolbar ul {
+    display:table-row;
+}
+.toolbar ul li
+{
+    display: table-cell;
+    height: 100px;
+    list-style-type: none;
+    margin: 10px;
+    vertical-align: middle;
+}
+.toolbar ul li a {
+    display:table-cell;
+    vertical-align: middle;
+    height:100px;
+    border: solid 1px black;
+}
+.toolbar ul li.button a {
+    height:50px;
+    border: solid 1px black;
 }

@@ -24,6 +24,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $article=$form->getData();
+            dd($article);
             $em->persist($article);
             $em->flush();
             $this->addFlash('success','Article a été crée avec success.');
@@ -59,7 +60,7 @@ class ArticleController extends AbstractController
             return $this->render('article/show.html.twig',compact('article'));
 
         }
-        return $this->render('article/edit.html.twig', ['articleForm' => $form->createView(),'article'=>$article]);
+        return $this->render('article/edit.html.twig', ['formArticle' => $form->createView(),'article'=>$article]);
 
 
     }

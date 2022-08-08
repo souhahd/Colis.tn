@@ -1,0 +1,74 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Nouvelle Annonce!{% endblock %}
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto bg-light mt-4 p-4">
+                <form method="post" class="row g-3">
+                    <input type="hidden" name="_token" value="{{ csrf_token('annonce_create') }}">
+                    <div class="col-12">
+                        <h1 class="h2 mb-3 font-weight-normal" style="text-align: center">Ajouter une annonce</h1>
+                    </div>
+                    {{ form_start(annonceForm) }}
+                    <div class="col-12">
+
+                    </div>
+
+                    <div class="col-12">
+
+                    </div>
+
+                    <div class="col-12">
+
+                    </div>
+
+                    <div class="col-12">
+                    </div>
+
+                    <div class="col-12">
+
+                    </div>
+
+                    <div class="col-12">
+
+                    </div>
+
+                    <div class="col-12">
+
+                    </div>
+
+                    <div class="col-12">
+
+
+                    </div>
+                    <div class="col-12">
+
+                    </div>
+                    <div class="col-12">
+
+
+                    </div>
+                    <div class="col-12">
+
+                    </div>
+                    <div class="col-12">
+
+
+                    </div>
+                    <div class="col-12" style="text-align: center">
+                        <input class="btn btn-lg btn-primary float-end" type="submit"  value="Ajouter" formnovalidate>
+                        <input class="btn btn-lg btn-primary float-end" type="reset"  value="Annuler">
+                    </div>
+
+                    {{ form_end(trajetForm) }}
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

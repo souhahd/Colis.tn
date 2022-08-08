@@ -70,7 +70,8 @@ class Article
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
      * @Vich\UploadableField(mapping="article_image", fileNameProperty="imageArticle")
-     *
+     * @Assert\Image(maxSize="8M",maxSizeMessage="Le fichier est trop volumineux. La taille maximale autorisée est 1M")
+     * @Assert\NotNull (message="Veuillez télécharger l'image")
      */
     private $imageFile;
 
@@ -192,18 +193,6 @@ class Article
         return $this;
     }
 
-    public function getImageArticle(): ?string
-    {
-        return $this->imageArticle;
-    }
-
-    public function setImageArticle(string $imageArticle): self
-    {
-        $this->imageArticle = $imageArticle;
-
-        return $this;
-    }
-
     /**
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
@@ -222,4 +211,16 @@ class Article
     {
         return $this->imageFile;
     }
+
+    public function getImageArticle(): ?string
+    {
+        return $this->imageArticle;
+    }
+
+    public function setImageArticle(?string $imageArticle): void
+    {
+        $this->imageArticle = $imageArticle;
+
+    }
+
 }

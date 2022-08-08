@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ArticleFormType extends AbstractType
@@ -18,16 +19,6 @@ class ArticleFormType extends AbstractType
             ->add('titreArticle',TextType::class,[
                 'attr'=> ['class' =>'form-control'],
                 'label'=>'Titre'])
-            ->add('imageFile', VichImageType::class, [
-                'label'=>'',
-                'required' => false,
-                'allow_delete' => true,
-                'delete_label' => '...',
-                'download_label' => '...',
-                'download_uri' => true,
-                'image_uri' => true,
-                'asset_helper' => true,
-            ])
             ->add('contenuArticle',TextType::class,['attr'=> ['class' =>'form-control'],
                 'label'=>'Contenu'])
             ->add('datePubArticle',DateTimeType::class,[
@@ -36,6 +27,15 @@ class ArticleFormType extends AbstractType
                 'label'=>'Auteur'])
             ->add('sourceArticle',TextType::class,['attr'=> ['class' =>'form-control'],
                 'label'=>'Source'])
+            ->add('imageFile', VichImageType::class, [
+                'label'=>'Image(JPG ou PNG)',
+                'required' => false,
+                'allow_delete' => false,
+                'delete_label' => 'Effacer',
+                'download_label' => 'Télécharger',
+                'download_uri' => true,
+                'imagine_pattern' => 'squared_thumbnail_small'
+            ])
 
         ;
     }
