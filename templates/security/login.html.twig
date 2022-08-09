@@ -18,19 +18,26 @@
                     </div>
 
                     <div class="col-12 my-3">
-                        <label for="inputEmail">Email</label>
-                        <input type="email" name="email" id="inputEmail" class="form-control" required autofocus>
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" required autofocus>
                     </div>
                     <div class="col-12 my-3">
-                        <label for="inputPassword">Mot de passe</label>
-                        <input type="password" name="password" id="inputPassword" class="form-control" required>
+                        <label for="password">Mot de passe</label>
+                        <input type="password" name="password" id="password" class="form-control" required>
                     </div>
                     <div class="col-12">
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}">
                     </div>
+
+                    <div class="checkbox mb-312">
+                        <label class="col-12">
+                            <input type="checkbox" name="_remember_me"> Remember me
+                        </label>
+
+                    </div>
                     <div class="col-12">
-                        <button class="btn btn-lg btn-primary btn-block float-end my-3" type="submit">
+                        <button class="btn btn-lg btn-primary btn-block float-end my-3" type="submit" formnovalidate>
                             Connecter
                         </button>
                     </div>

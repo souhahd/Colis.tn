@@ -2,11 +2,31 @@
 {% block title %}Liste des Annonces!{% endblock %}
 {% block body %}
 
-    {% for ann in annonce %}
-        <article>
-            <h1> <a href="{{ url('app_annone_show', {'id':ann.id}) }}"> {{ ann.adresseDepart }}  vers {{ ann.adresseArrivee }} </a> </h1>
-        </article>
-    {% endfor %}
+    {% if annonce|length > 0 %}
+    <h2 class="pb-2 border-bottom" style="text-align: center"> Liste des annonces !</h2>
 
 
+        {% for ann in annonce %}
+            <article>
+                <img src="/uploads/annonces/{{ ann.colis.image }} | imagine_filter('squared_thumbnail_medium')" alt="{{ ann.colis.image }}" />
+                <h2> <a class="text-secondary text-decoration-none" href="{{ url('app_annone_show', {'id':ann.id}) }}"> {{ ann.colis.objetColis }} </a>  {{ ann.prixProposee }}Dt</h2>
+                <ul style="align-items: baseline" >
+                    <li class="d-flex align-items-center me-3">
+                        <small> Départ :{{ ann.adresseDepart }}</small>
+                    </li>
+                    <li class="d-flex align-items-center me-3">
+                        <small> Arrivée : {{ ann.adresseArrivee }}</small>
+                    </li>
+                    <li class="d-flex align-items-center">
+                        <small>Sortie le : <time datetime="{{ ann.dateProposee|date('Y-m-d H:i') }}">{{ ann.dateProposee|date('Y-m-d H:i') }}</time></small>
+                    </li>
+
+                </ul>
+                <small>By {{ ann.user.prenom }} {{ ann.user.nom }}</small>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p class="h1 text-center"> Pas d'annonce. <a href="{{ path('app_annonce_create') }}">Soyez le premier!</a></p>
+
+    {% endif  %}
 {% endblock %}

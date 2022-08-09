@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm bg-light py-0 mb-4">
     <div class="container" >
-        <a class="navbar-brand" href="{{ path('app_home') }}"> <img src="/images/ColisTN2.png"  id="header_not_logged"  style="text-align: center" >
+        <a class="navbar-brand" href="{{ path('app_home') }}"> <img src="assets/images/ColisTN2.png"  id="header_not_logged"  style="text-align: center" >
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -18,9 +18,10 @@
                     <a class="nav-link" href="{{ path('app_blog') }}">Blog</a>
                 </li>
 
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                {% if app.user %}
                     <li class="nav-item">
-                        <a class="nav-link text-black-50" href=#>Account </a>
+                        <a class="nav-link text-black-50" href=#>{{ app.user.nom }} {{ app.user.prenom }}  </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-black-50" href="{{ path('app_logout') }}">Se deconnecter</a>

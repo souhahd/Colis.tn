@@ -4,14 +4,17 @@
 {% block body %}
 
     <div class="container px-4 py-5" id="custom-cards">
-        <h2 class="pb-2 border-bottom" style="text-align: center"> Liste des trajets !</h2>
+        {% if trajet|length > 0 %}
+        <h2 class="pb-2 border-bottom mt-5" style="text-align: center"> Liste des trajets !</h2>
+
+
 
         <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
             {% for tr in trajet  %}
-                <a href={{ url('app_trajet_show', {'id':tr.id}) }}>
+                <a href={{ url('app_trajet_show', {'id':tr.id}) }} >
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg";>
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg mt-5 text-secondary text-decoration-none";>
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1 mt-5">
 
                         <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Format : {{ tr.formatObjet }}</h2>
                         <ul style="align-items: baseline" >
@@ -22,7 +25,7 @@
                                <small>À : {{ tr.lieuArriveeTrajet }}</small>
                             </li>
                             <li class="d-flex align-items-center">
-                                <small>{{ tr.dateDepart|ago }}</small>
+                                <small> Départ le : <time datetime="{{ tr.dateDepart|date('Y-m-d H:i') }}">{{ tr.dateDepart|date('Y-m-d H:i') }}</time></small>
                             </li>
 
                         </ul>
@@ -34,8 +37,13 @@
             </div>
                 </a>
             {% endfor %}
+
         </div>
 
+        {% else %}
+            <p class="h1 text-center"> Pas des trajets disponible. <a href="{{ path('app_trajet_create') }}">Soyez le premier!</a></p>
+
+        {% endif %}
     </div>
 
 
