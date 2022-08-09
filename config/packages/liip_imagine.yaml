@@ -18,14 +18,14 @@ liip_imagine:
                 allow_upscale: true
 
         # name our filter set "my_thumb_filter"
-        squared_thumbnail_small:
-          filters:
+      squared_thumbnail_small:
+        filters:
               # use and setup the "thumbnail" filter
-              thumbnail:
+            thumbnail:
                 # set the thumbnail size to "200x200" pixels
-                size: [ 200, 200 ]
+              size: [ 200, 200 ]
 
                 # crop the input image, if required
-                mode: outbound
+              mode: outbound
 
-                allow_upscale: true
+              allow_upscale: true
