@@ -169,13 +169,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function setRoles(array $roles): self
     {
+        $roles[] = 'ROLE_USER';
         $this->roles = $roles;
 
         return $this;
     }
 
     /**
-     * @see PasswordAuthenticatedUserInterface
+     * @return string the hashed password for this user
      */
     public function getPassword(): string
     {
@@ -203,7 +204,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function eraseCredentials()
     {
-         $this->plainPassword = null;
+       #  $this->plainPassword = null;
     }
 
     public function getNom(): ?string

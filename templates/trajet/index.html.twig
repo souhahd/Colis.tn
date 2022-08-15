@@ -3,50 +3,67 @@
 {% block title %}Liste des Trajets!{% endblock %}
 {% block body %}
 
-    <div class="container px-4 py-5" id="custom-cards">
-        {% if trajet|length > 0 %}
-        <h2 class="pb-2 border-bottom mt-5" style="text-align: center"> Liste des trajets !</h2>
+    <section class="py-7" id="services" container-xl="container-xl">
 
+        <div class="container" >
 
+            <div class="row h-100 justify-content-center">
+                {% for tr in trajet  %}
+                <div class="col-md-4 pt-4 px-md-2 px-lg-3">
+                    <div class="card h-100 px-lg-5 card-span">
+                        <div class="card-body d-flex flex-column justify-content-around">
+                            <div class="text-center pt-5">
+                                <h5 class="my-4"  style="font-size: 1rem; width:250px">Format : {{ tr.formatObjet }}</h5>
+                            </div>
+                            <h6 class="mb-0 fs--1 text-1000 fw-medium">De :{{ tr.lieuDepartTrajet }}</h6>
+                            <h6 class="mb-0 fs--1 text-1000 fw-medium">À : {{ tr.lieuArriveeTrajet }}</h6>
+                            <h6 class="mb-0 fs--1 text-1000 fw-medium">Départ le : <time datetime="{{ tr.dateDepart|date('Y-m-d H:i') }}">{{ tr.dateDepart|date('Y-m-d H:i') }}</time></h6>
+                            <p class="fs--2 fw-normal mb-0"> By:{{ tr.user.nom}} {{ tr.user.prenom}}</p>
+                            <div class="text-center my-5">
+                                <div class="d-grid">
+                                    {% if app.user %}
+                                        {% if app.user.id == tr.user.id %}
+                                            <div class="btn-group">
+                                                <button class="btn btn-outline-danger" href="{{ path('app_trajet_edit', {'id': tr.id}) }}" type="submit">Modifier</button>
+                                                <button type="button" class="btn btn-danger "  data-toggle="modal" data-target="#alertsupp"><i class="fa fa-trash"></i></button>
 
-        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-            {% for tr in trajet  %}
-                <a href={{ url('app_trajet_show', {'id':tr.id}) }} >
-            <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg mt-5 text-secondary text-decoration-none";>
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1 mt-5">
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="alertsupp" role="dialog" >
+                                                    <div class="modal-dialog" >
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                ...
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Format : {{ tr.formatObjet }}</h2>
-                        <ul style="align-items: baseline" >
-                            <li class="d-flex align-items-center me-3">
-                                <small> De :{{ tr.lieuDepartTrajet }}</small>
-                            </li>
-                            <li class="d-flex align-items-center me-3">
-                               <small>À : {{ tr.lieuArriveeTrajet }}</small>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <small> Départ le : <time datetime="{{ tr.dateDepart|date('Y-m-d H:i') }}">{{ tr.dateDepart|date('Y-m-d H:i') }}</time></small>
-                            </li>
+                                            </div>
 
-                        </ul>
-                        <small>By:{{ tr.user.nom}} {{ tr.user.prenom}}</small>
-
+                                        {% else %}
+                                        <a class="btn btn-outline-danger" href="{{ path('app_trajet_show', {'id':tr.id}) }}" type="submit">Contacter {{ tr.user.nom}} </a>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
+                {% endfor %}
             </div>
-                </a>
-            {% endfor %}
-
         </div>
+        <!-- end of .container-->
 
-        {% else %}
-            <p class="h1 text-center"> Pas des trajets disponible. <a href="{{ path('app_trajet_create') }}">Soyez le premier!</a></p>
-
-        {% endif %}
-    </div>
-
-
-
+    </section>
 
 {% endblock %}

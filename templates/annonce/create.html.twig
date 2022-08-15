@@ -3,13 +3,13 @@
 {% block title %}Nouvelle Annonce!{% endblock %}
 {% block body %}
 
-    <div class="container">
+    <div class="container" style="margin-top: 110px; margin-bottom: 50px">
         <div class="row">
             <div class="col-md-6 mx-auto bg-light mt-4 p-4">
                 <form method="post" class="row g-3">
                     <input type="hidden" name="_token" value="{{ csrf_token('annonce_create') }}">
                     <div class="col-12">
-                        <h1 class="h2 mb-3 font-weight-normal" style="text-align: center">Ajouter une annonce</h1>
+                        <h1 class="text-danger" style="text-align: center">Ajouter une annonce</h1>
                     </div>
 
 {#                    <div class="col-12"> #}
@@ -21,18 +21,15 @@
 
 
                     <div class="col-12">
-                        <label for="af1" >Address de départ</label>
-                        <input type="text" name="addressdep" id="af1" class="form-control" required autofocus>
+                        <input type="text" name="addressdep" id="af1" class="form-control" required autofocus placeholder="Address de départ">
                     </div>
 
                     <div class="col-12">
-                        <label for="af2">Address d'arrvée</label>
-                        <input type="text" name="addressarr" id="af2" class="form-control" required autofocus>
+                        <input type="text" name="addressarr" id="af2" class="form-control" required autofocus placeholder="Address d'arrvée">
                     </div>
 
                     <div class="col-12">
-                        <label for="af3">Prix proposée</label>
-                        <input type="text" name="prix" id="af3" class="form-control" required autofocus>
+                        <input type="text" name="prix" id="af3" class="form-control" required autofocus placeholder="Prix proposée">
                     </div>
 
                     <div class="col-12">
@@ -42,43 +39,38 @@
 
                     <div class="col-12">
                         <label for="ifc" >Image (JPG ou PNG) </label>
-
+                    </div>
+                    <div class="col-12">
                         <input class="file-upload-input" type="file" name="imagecolis" id="ifc" accept="Image/*">
                     </div>
 
                     <div class="col-12">
-                        <label for="cf1">Objet du Colis </label>
-                        <input type="text" name="objet" id="cf1" class="form-control" required autofocus>
+                        <input type="text" name="objet" id="cf1" class="form-control" required autofocus placeholder="Objet du Colis">
                     </div>
 
                     <div class="col-12">
                         <label for="cf11">Description du Colis </label>
-                        <textarea name="description" id="cf11" class="form-control" required autofocus rows="2"> </textarea>
+                        <textarea name="description" id="cf11" class="form-control" required autofocus rows="2" placeholder="Description du Colis"> </textarea>
                     </div>
 
                     <div class="col-12">
-                        <label for="cf2">Quantité</label>
-                        <input type="number" name="quantite" id="cf2" class="form-control" required autofocus>
+                        <input type="number" name="quantite" id="cf2" class="form-control" required autofocus placeholder="Quantité">
                     </div>
                     <div class="col-12">
-                        <label for="cf3">Largeur du Colis </label>
-                        <input type="number" name="largeur" id="cf3" class="form-control" required autofocus>
+                        <input type="number" name="largeur" id="cf3" class="form-control" required autofocus placeholder="Largeur du Colis">
                     </div>
                     <div class="col-12">
-                        <label for="cf6">Longeur du Colis </label>
-                        <input type="number" name="longeur" id="cf6" class="form-control" required autofocus>
+                        <input type="number" name="longeur" id="cf6" class="form-control" required autofocus placeholder="Longeur du Colis">
                     </div>
                     <div class="col-12">
-                        <label for="cf4">Hauteur du Colis </label>
-                        <input type="number" name="hauteur" id="cf4" class="form-control" required autofocus>
+                        <input type="number" name="hauteur" id="cf4" class="form-control" required autofocus placeholder="Hauteur du Colis ">
                     </div>
                     <div class="col-12">
-                        <label for="cf5">Poids Unitaire du Colis </label>
-                        <input type="number" name="poids" id="cf5 " class="form-control" required autofocus>
+                        <input type="number" name="poids" id="cf5 " class="form-control" required autofocus placeholder="Poids Unitaire du Colis">
                     </div>
-                    <div class="col-12" style="text-align: center">
-                        <input class="btn btn-lg btn-primary float-end" type="submit"  value="Ajouter" formnovalidate>
-                        <input class="btn btn-lg btn-primary float-end" type="reset"  value="Annuler">
+                    <div class="col-12" style="display: flex; justify-content: center; justify-items: center">
+                        <input class="btn btn-lg btn-primary float-end" type="submit"  value="Ajouter" formnovalidate style="margin-right: 50px">
+                        <input class="btn btn-lg btn-primary float-end" type="reset"  value="Annuler" style="margin-left: 50px">
 
 
                     </div>

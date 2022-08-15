@@ -3,17 +3,48 @@
 {% block title %}Trajet n° {{ trajet.id}} {% endblock %}
 {% block body %}
 
+        <section class="py-7" id="services" container-xl="container-xl">
 
-        <article>
-                <h1> {{ trajet.lieuDepartTrajet }}</h1>
-                <h1> {{ trajet.lieuArriveeTrajet }}</h1>
-        </article>
-        <a href="{{ path('app_trajet_edit', {'id': trajet.id}) }}"> Modifier </a>
-        <a href="#" onclick="event.preventDefault(); confirm('Est ce que vous étes sure?') && document.getElementById('js-trajet-delete-form').submit();" > Supprimer </a>
+                <div class="container" >
 
-        <form id="js-trajet-delete-form" action="{{ path('app_trajet_delete', {'id': trajet.id}) }}" method="post" style="display: none;">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token('trajet_deletion_' ~ trajet.id) }}">
-                <input type="hidden" name="_method" value="DELETE">
-        </form>
+                        <div class="row h-100 justify-content-center">
+
+                                        <div class="col-md-4 pt-4 px-md-2 px-lg-3">
+                                                <div class="card h-100 px-lg-5 card-span">
+                                                        <div class="card-body d-flex flex-column justify-content-around">
+                                                                <div class="text-center pt-5">
+                                                                        <h2 class="my-4">Format : {{ trajet.formatObjet }}</h2>
+                                                                </div>
+                                                                <h4 style="width: 350px">De :{{ trajet.lieuDepartTrajet }}</h4>
+                                                                <h4>À : {{ trajet.lieuArriveeTrajet }}</h4>
+                                                                <h4>Départ le : <time datetime="{{ trajet.dateDepart|date('Y-m-d H:i') }}">{{ trajet.dateDepart|date('Y-m-d H:i') }}</time></h4>
+                                                                <h3> By:{{ trajet.user.nom}} {{ trajet.user.prenom}}</h3>
+
+                                                                <a href="{{ path('app_trajet_edit', {'id': trajet.id}) }}"> Modifier </a>
+                                                                <a href="#" onclick="event.preventDefault(); confirm('Est ce que vous étes sure?') && document.getElementById('js-trajet-delete-form').submit();" > Supprimer </a>
+
+                                                                <form id="js-trajet-delete-form" action="{{ path('app_trajet_delete', {'id': trajet.id}) }}" method="post" style="display: none;">
+                                                                        <input type="hidden" name="csrf_token" value="{{ csrf_token('trajet_deletion_' ~ trajet.id) }}">
+                                                                        <input type="hidden" name="_method" value="DELETE">
+                                                                </form>
+
+                                                                <div class="text-center my-5">
+                                                                        <div class="d-grid">
+                                                                                <a class="btn btn-outline-danger" href="{{ path('app_trajet_show', {'id':trajet.id}) }}" type="submit">Contacter !</a>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                </div>
+                                        </div>
+
+                        </div>
+                </div>
+                <!-- end of .container-->
+
+        </section>
+
+
+
+
 
 {% endblock %}

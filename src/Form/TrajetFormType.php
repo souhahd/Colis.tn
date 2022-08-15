@@ -17,16 +17,15 @@ class TrajetFormType extends AbstractType
     {
         $builder
             ->add('lieuDepartTrajet',TextType::class,[
-                'attr'=> ['class' =>'form-control'],
-                'label'=>'Address de départ'])
+                'attr'=> ['class' =>'form-control','placeholder' => 'Address de départ'],
+                'label'=>false])
             ->add('lieuArriveeTrajet', TextType::class,[
-                'attr'=> ['class' =>'form-control'],
-                'label'=>'Address d'.'arrivée'])
+                'attr'=> ['class' =>'form-control','placeholder' => 'Address d \'arrivée'],
+                'label'=>false])
             ->add('detourMaxTrajet', TextType::class,[
-                'attr'=> ['class' =>'form-control'],
-                'label'=>'Detour Max'])
-            ->add('dateDepart',DateTimeType::class,[
-                'label'=>'Date de départ'])
+                'attr'=> ['class' =>'form-control','placeholder' => 'Detour Max'],
+                'label'=>false])
+            ->add('dateDepart',DateTimeType::class,['widget' => 'single_text','label' => false])
             ->add('formatObjet',ChoiceType::class, array(
         'choices' => array(
             'XS'=>'XS',
@@ -34,8 +33,9 @@ class TrajetFormType extends AbstractType
             'L'=> 'L',
             'XL'=> 'XL',
             'XXL'=> 'XXL',
-        ),
-                'label'=>'Format d \'objets'
+        )
+                ,
+                'label'=>false
 
     ))
             ->getForm()

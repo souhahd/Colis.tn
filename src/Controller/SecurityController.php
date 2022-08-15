@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use PhpParser\Node\Stmt\Else_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,6 +15,13 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        if ($this->getUser()) {
+            $this->addFlash('error', 'Vous ètes déjà connecté');
+
+            return $this->redirectToRoute('app_home');
+        }
+
+
         return $this->render('security/login.html.twig', [
             'error' => $authenticationUtils->getLastAuthenticationError(),
             'last_username' => $authenticationUtils->getLastUsername(),

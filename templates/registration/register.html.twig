@@ -3,20 +3,86 @@
 {% block title %} S'inscrire!{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
 
-    <h1>  </h1>
+        <div class="container" style="margin-top: 110px; margin-bottom: 50px">
+                <div class="row">
+                        <div class="col-md-6 mx-auto bg-light mt-4 p-4">
+                                <form method="post" class="row g-3" novalidate>
+                                        <input type="hidden" name="_token" value="{{ csrf_token('register') }}">
+                                        <div class="col-12">
+                                                <h1 class="text-danger" style="text-align: center">Inscription</h1>
+                                        </div>
+                                        {% for flash_error in app.flashes('verify_email_error') %}
+                                                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                                        {% endfor %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                                        {{ form_start(registrationForm) }}
+                                        <div class="col-12" aria-placeholder="Nom">
+                                                {{ form_row(registrationForm.nom) }}
+                                        </div>
 
-        <button type="submit" class="btn">Valider</button>
-        <button type="submit" class="btn">Annuler</button>
-    {{ form_end(registrationForm) }}
+                                        <div class="col-12">
+                                                {{ form_row(registrationForm.prenom) }}
+                                        </div>
+
+                                        <div class="col-12">
+                                                {{ form_row(registrationForm.email) }}
+                                        </div>
+                                        <div class="col-12">
+                                                {{ form_row(registrationForm.genre) }}
+                                        </div>
+                                        <div class="col-12">
+                                                {{ form_row(registrationForm.dateNaissance) }}
+                                        </div>
+                                        <div class="col-12">
+                                                {{ form_row(registrationForm.adresse) }}
+                                        </div>
+                                        <div class="col-12">
+                                                {{ form_row(registrationForm.telephone) }}
+                                        </div>
+                                        <div class="col-12">
+                                                {{ form_row(registrationForm.image) }}
+
+                                                {{ form_row(registrationForm.plainPassword.first, {
+                                                        label: false
+                                                }) }}
+                                        </div>
+                                        <div class="col-12">
+                                                {{ form_row(registrationForm.plainPassword.second, {
+                                                        label: false
+                                                }) }}
+                                        </div>
+
+                                        <div class="col-12">
+                                                {{ form_row(registrationForm.agreeTerms) }}
+                                        </div>
+
+
+
+
+                                        <div class="col-12" style="display: flex; justify-content: center; justify-items: center">
+                                                <input class="btn btn-lg btn-primary float-end" type="submit"  value="Valider" formnovalidate style="margin-right: 50px">
+
+                                                <input class="btn btn-lg btn-primary float-end" type="reset" value="Annuler" style="margin-left: 50px">
+
+
+
+                                        </div>
+                                        {{ form_end(registrationForm) }}
+
+
+
+
+
+                                </form>
+                        </div>
+                </div>
+        </div>
+
+
+
+
+
+
+
 {% endblock %}

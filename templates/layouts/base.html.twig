@@ -2,34 +2,52 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Bienvennue!{% endblock %}</title>
+    <title>{% block title %} {% endblock %}</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest">
-    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#1890c2">
-    <meta name="msapplication-TileColor" content="#dbd7d7">
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
     <meta name="theme-color" content="#ffffff">
 
-    {% block stylesheets %}
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Spartan&display=swap">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
-        <link rel="stylesheet" href="build/assets/css/app.css">
 
+
+
+    {% block stylesheets %}
+        <!-- ===============================================-->
+        <!--    Stylesheets-->
+        <!-- ===============================================-->
+        <link href="/assets/css/theme.css" rel="stylesheet" />
     {% endblock %}
 </head>
-<body class="flex flex-col justify-between items-center min-h-screen">
+<body >
+<main class="main" id="top">
+    {{ include('layouts/partials/navbar.html.twig') }}
 
-{{ include('layouts/partials/_navbar.html.twig') }}
-{{ include('layouts/partials/_flash_messages.html.twig') }}
+    {% block body %}
 
-<main role="main" class="container h-100">
-    {% block body %}{% endblock %}
+    {% endblock %}
+
+
+    {{ include('layouts/partials/footer.html.twig') }}
 </main>
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+<script src="/vendors/@popperjs/popper.min.js"></script>
+<script src="/vendors/bootstrap/bootstrap.min.js"></script>
+<script src="/vendors/is/is.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+<script src="/vendors/fontawesome/all.min.js"></script>
+<script src="/assets/js/theme.js"></script>
 
-{{ include('layouts/partials/_footer.html.twig') }}
+<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+
 </body>
 </html>
