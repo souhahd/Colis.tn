@@ -71,14 +71,19 @@
                     <div class="col-md-4 pt-4 px-md-2 px-lg-3">
                         <div class="card h-100 px-lg-5 card-span">
                             <div class="card-body d-flex flex-column justify-content-around">
-                                <div class="text-center pt-5"><img class="img-fluid" src="assets/img/icons/serv3.svg" alt="..." />
+                                <div class="text-center pt-5"><img class="img-fluid" src="/assets/img/icons/serv3.svg" alt="..." />
                                     <h5 class="my-4" style="font-size: 1rem; width:250px">Vous vendez sur Leboncoin, Interenchères, Selency… ?</h5>
                                 </div>
-                                <p>Trouvez une solution logistique flexible, fiable et économique pour livrer vos clients.</p>
+                                <p>Trouvez une solution logistique flexible, fiable et économique pour livrer vos prôches.</p>
 
                                 <div class="text-center my-5">
                                     <div class="d-grid">
-                                        <button class="btn btn-outline-danger" type="submit" disabled >En savoir plus</button>
+                                        {% if app.user %}
+                                            <a class="btn btn-outline-danger" type="submit" href="{{ path('app_annonce_create') }}">Envoyer un colis</a>
+                                        {% else %}
+                                            <a class="btn btn-outline-danger" type="submit" href="{{ path('app_login') }}">Envoyer un colis</a>
+                                        {% endif %}
+
                                     </div>
                                 </div>
                             </div>
@@ -331,45 +336,6 @@
         <!-- ============================================-->
 
 
-
-
-        <!-- ============================================-->
-        <!-- <section> begin ============================-->
-        <section id="findUs">
-
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8 col-lg-5 mb-6 text-center">
-                        <h5 class="text-danger">TROUVE NOUS</h5>
-                        <h2>Accédez-nous facilement</h2>
-                    </div>
-                    <div class="col-12">
-                        <div class="card card-span rounded-2 mb-3">
-                            <div class="row">
-                                <div class="col-md-6 col-lg-7 d-flex"><img class="w-100 fit-cover rounded-md-start rounded-top rounded-md-top-0" src="assets/img/gallery/map.svg" alt="map" /></div>
-                                <div class="col-md-6 col-lg-5 d-flex flex-center">
-                                    <div class="card-body">
-                                        <h5>Contacter Nous</h5>
-                                        <p class="text-700 my-4"> <i class="fas fa-map-marker-alt text-warning me-3"></i><span>Monastir</span></p>
-                                        <p><i class="fas fa-phone-alt text-warning me-3"></i><span class="text-700">+216 73 025 120</span></p>
-                                        <p><i class="fas fa-envelope text-warning me-3"> </i><a class="text-700" href="mailto:vctung@outlook.com"> info@colis.tn</a></p>
-                                        <ul class="list-unstyled list-inline mt-5">
-                                            <li class="list-inline-item"><a class="text-decoration-none" href="#!"><i class="fab fa-facebook-square fs-2"></i></a></li>
-                                            <li class="list-inline-item"><a class="text-decoration-none" href="#!"><i class="fab fa-instagram-square fs-2"></i></a></li>
-                                            <li class="list-inline-item"><a class="text-decoration-none" href="#!"><i class="fab fa-twitter-square fs-2"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end of .container-->
-
-        </section>
-        <!-- <section> close ============================-->
-        <!-- ============================================-->
 
 
 
