@@ -1,11 +1,16 @@
-<h1>Hi! Please confirm your email!</h1>
+<h3>Vérification d'email!</h3>
+<p> Cher ,
 
-<p>
-    Please confirm your email address by clicking the following link: <br><br>
-    <a href="{{ signedUrl }}">Confirm my Email</a>.
-    This link will expire in {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+    Merci d’avoir créé un compte sur Colis.tn.
+    Pour pouvoir accéder à notre site web, veuillez confirmer votre adresse e-mail en cliquant sur le boutton suivant.
 </p>
 
+
 <p>
-    Cheers!
+    <a href="{{ signedUrl }}">Vérifier votre compte</a>
+    Attention, ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
 </p>
+
+<p>Cordialement,
+<hr>
+Ce message a été envoyé automatiquement. Nous vous remercions de ne pas répondre.</p>

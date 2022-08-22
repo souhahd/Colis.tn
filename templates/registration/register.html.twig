@@ -42,17 +42,28 @@
                                         </div>
                                         <div class="col-12">
                                                 {{ form_row(registrationForm.image) }}
-
-                                                {{ form_row(registrationForm.plainPassword.first, {
-                                                        label: false
-                                                }) }}
                                         </div>
+                                        <div class="col-12 mdp">
+                                                {{ form_row(registrationForm.plainPassword.first) }}
+                                                <i class="fa-solid fa-eye"></i>
+
+                                        </div>
+                                        <script>
+                                                let input = document.querySelector('.mdp input');
+                                                let showBtn = document.querySelector('.mdp i');
+                                                showBtn.onclick= function(){
+                                                    if(input.type === "password"){
+                                                        input.type = "text";
+                                                        showBtn.classList.add('active');
+                                                    }else{
+                                                        input.type = "password";
+                                                        showBtn.classList.remove('active');
+                                                    }
+                                                }
+                                        </script>
                                         <div class="col-12">
-                                                {{ form_row(registrationForm.plainPassword.second, {
-                                                        label: false
-                                                }) }}
+                                                {{ form_row(registrationForm.plainPassword.second) }}
                                         </div>
-
                                         <div class="col-12">
                                                 {{ form_row(registrationForm.agreeTerms) }}
                                         </div>

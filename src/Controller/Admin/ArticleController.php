@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Article;
 use App\Form\ArticleFormType;
@@ -10,11 +10,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function dd;
 
 class ArticleController extends AbstractController
 {
     /**
-     * @Route("/article/create", methods={"GET", "POST"}, name="app_article_create")
+     * @Route("/super/admin/article/create", methods={"GET", "POST"}, name="app_article_create")
      */
     public function create(Request $request, EntityManagerInterface $em): Response
     {
@@ -24,17 +25,16 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $article=$form->getData();
-            dd($article);
             $em->persist($article);
             $em->flush();
             $this->addFlash('success','Article a été crée avec success.');
             return $this->redirectToRoute('app_blog');
         }
-        return $this->renderForm('article/create.html.twig',['formArticle'=>$form]);
+        return $this->renderForm('super_admin/article/create.html.twig',['formArticle'=>$form]);
 
     }
     /**
-     *@Route("/article/{id<[0-9]+>}", name="app_article_show", methods={"GET"})
+     *@Route("/super/admin/article/{id<[0-9]+>}", name="app_article_show", methods={"GET"})
      */
     public function show(Article $article):Response
     {
@@ -42,11 +42,11 @@ class ArticleController extends AbstractController
         {
             throw $this->createNotFoundException('Article #' . $article->id .'  not found!');
         }
-        return $this->render('article/show.html.twig', compact('article'));
+        return $this->render('super_admin/article/show.html.twig', compact('article'));
     }
 
     /**
-     * @Route("/article/{id<[0-9]+>}/edit", name="app_article_edit", methods={"GET", "PUT", "POST"})
+     * @Route("/super/admin/article/{id<[0-9]+>}/edit", name="app_article_edit", methods={"GET", "PUT", "POST"})
      */
     public function edit(Article $article, Request $request, EntityManagerInterface $em):Response
     {
@@ -57,10 +57,10 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             $this->addFlash('success','Article a été modifié avec success.');
-            return $this->render('article/show.html.twig',compact('article'));
+            return $this->render('super_admin/article/show.html.twig',compact('article'));
 
         }
-        return $this->render('article/edit.html.twig', ['formArticle' => $form->createView(),'article'=>$article]);
+        return $this->render('super_admin/article/edit.html.twig', ['formArticle' => $form->createView(),'article'=>$article]);
 
 
     }
@@ -77,11 +77,11 @@ class ArticleController extends AbstractController
 
 
     /**
-     * @Route("/article", name="app_article")
+     * @Route("/super/admin/article", name="app_article")
      */
     public function index(ArticleRepository $articleRep): Response
     {
-        return $this->render('article/index.html.twig',['article'=>$articleRep->findBy([],['createdAt'=>'ASC'])]);
+        return $this->render('super_admin/article/index.html.twig',['article'=>$articleRep->findBy([],['createdAt'=>'ASC'])]);
     }
 
 

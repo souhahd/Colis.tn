@@ -1,0 +1,46 @@
+    <!-- [ Pre-loader ] End -->
+    <!-- [ navigation menu ] start -->
+    <nav class="pcoded-navbar">
+        <div class="navbar-wrapper">
+            <div class="navbar-brand header-logo">
+                <a href="{{ path('app_super_admin') }}" class="b-brand">
+                    <div class="b-bg">
+                        <i class="feather icon-trending-up"></i>
+                    </div>
+                    <span class="b-title">ADMIN COLIS.TN</span>
+                </a>
+                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+            </div>
+            <div class="navbar-content scroll-div">
+                <ul class="nav pcoded-inner-navbar">
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item active">
+                        <a href="{{ path('app_super_admin') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Tableau de bord</span></a>
+                    </li>
+                    <li data-username="Table bootstrap datatable footable" class="nav-item">
+                        <a href="{{ path('app_users_show') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Utilisateurs</span></a>
+                    </li>
+                    <li data-username="Table bootstrap datatable footable" class="nav-item">
+                        <a href="{{ path('app_trajets_show') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-sliders"></i></span><span class="pcoded-mtext">Trajets</span></a>
+                    </li>
+                    <li data-username="Table bootstrap datatable footable" class="nav-item">
+                        <a href="{{ path('app_annonces_show') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-feather"></i></span><span class="pcoded-mtext">Annonces</span></a>
+                    </li>
+                    <li data-username="Table bootstrap datatable footable" class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-twitter"></i></span><span class="pcoded-mtext">Blogs</span></a>
+                    </li>
+                    <li data-username="Table bootstrap datatable footable" class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-inbox"></i></span><span class="pcoded-mtext">Messageries</span></a>
+                    </li>
+                    <li data-username="Table bootstrap datatable footable" class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-credit-card"></i></span><span class="pcoded-mtext">Paiement</span></a>
+                    </li>
+                    <li data-username="Table bootstrap datatable footable" class="nav-item">
+                        <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings"></i></span><span class="pcoded-mtext">Paramètre</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- [ navigation menu ] end -->
+
+    {{ include('/super_admin/admin_layouts/partiels/_header.html.twig') }}

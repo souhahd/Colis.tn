@@ -39,13 +39,11 @@ class RegistrationFormType extends AbstractType
 
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'label'=>false,
-                'invalid_message' => 'Les champs du mot de passe doivent correspondre.',
+                'invalid_message' => 'Les champs du mot de passe doivent correspondre!',
                 'options' => ['attr' => ['class' => 'password-field','label'=>false]],
                 'required' => true,
-                'first_options'  => ['attr'=> ['class' =>'form-control','placeholder' => 'Mot de passe','label'=>false]],
-                'second_options' => ['attr'=> ['class' =>'form-control','placeholder' => 'Confirmation mot de passe','label'=>false]],
-                'mapped' => false,
+                'first_options'  => ['attr'=> ['class' =>'form-control','placeholder' => 'Mot de passe','label'=>false], 'label'=>false],
+                'second_options' => ['attr'=> ['class' =>'form-control','placeholder' => 'Confirmation mot de passe','label'=>false], 'label'=>false],
                 'attr' => ['autocomplete' => 'new-password','class' =>'form-control'],
                 'constraints' => [
                     new NotBlank([
@@ -72,7 +70,8 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Vous devez accepter nos conditions.',
                     ]),
                 ],
-            ])
+            ])->getForm()
+
         ;
     }
 

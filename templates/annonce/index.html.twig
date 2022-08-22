@@ -1,32 +1,59 @@
 {% extends 'layouts/base.html.twig' %}
 {% block title %}Liste des Annonces!{% endblock %}
 {% block body %}
+    <section class="py-7" id="services" container-xl="container-xl">
 
-    {% if annonce|length > 0 %}
-    <h2 class="pb-2 border-bottom" style="text-align: center"> Liste des annonces !</h2>
+        <div class="container" >
+
+            <div class="row h-100 justify-content-center">
+                {% for ann in annonce  %}
+                    <div class="col-md-4 pt-4 px-md-2 px-lg-3">
+                        <div class="card h-100 px-lg-5 card-span">
+                            <div class="card-body d-flex flex-column justify-content-around">
+                                <div class="text-center pt-5">
+                                    <h5 class="my-4"  style="font-size: 1rem; width:250px"> {{ ann.colis.objetColis }}</h5>
+                                </div>
+                                <div class="text-center pt-5">
+                                <img src="/uploads/annonces/{{ ann.colis.image }}" alt="{{ ann.colis.image }}" style="height: 254px;width: 254px;"/>
+                                    <h6 class="mb-0 fs--1 text-1000 fw-medium">{{ ann.prixProposee }} DT</h6>
+                                    <h6 class="mb-0 fs--1 text-1000 fw-medium">{{ ann.colis.longeurColis }}X{{ ann.colis.longeurColis }}X{{ ann.colis.hauteurColis }}</h6>
+                                </div>
+                                <h6 class="mb-0 fs--1 text-1000 fw-medium">PU:  {{ ann.colis.poidsUnitaireColis }}KG</h6>
+                                <h6 class="mb-0 fs--1 text-1000 fw-medium">De :{{ ann.adresseDepart }}</h6>
+                                <h6 class="mb-0 fs--1 text-1000 fw-medium">À : {{ ann.adresseArrivee }}</h6>
+                                <h6 class="mb-0 fs--1 text-1000 fw-medium">
+                                    Sortie le : <time datetime="{{ ann.dateProposee|date('Y-m-d H:i') }}">{{ ann.dateProposee|date('Y-m-d H:i') }}</time>
+                                </h6>
+                                {% if app.user.id != ann.user.id %}
+                                    <p class="fs--2 fw-normal mb-0"> By:{{ ann.user.nom}} {{ ann.user.prenom}}</p>
+                                {% endif %}
+                                <div class="text-center my-5">
+                                    <div class="d-grid">
+                                        {% if app.user %}
+                                            {% if app.user.id == ann.user.id %}
+                                                <div class="btn-group">
+                                                    <a class="btn btn-outline-danger" href="{{ path('app_annonce_edit', {'id': ann.id}) }}" type="submit">Modifier</a>
+                                                    <a type="button" class="btn btn-danger "  data-toggle="modal" data-target="#alertsupp"><i class="fa fa-trash"></i></a>
+                                                </div>
+                                            {% else %}
+                                                <a class="btn btn-outline-danger" href="#" type="submit">Contacter {{ ann.user.nom}} </a>
+                                            {% endif %}
+                                        {% else %}
+                                            <a class="btn btn-outline-danger" href="{{ path('app_login') }}" type="submit">Contacter {{ ann.user.nom}} </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!-- end of .container-->
+
+    </section>
 
 
-        {% for ann in annonce %}
-            <article>
-                <img src="/uploads/annonces/{{ ann.colis.image }} | imagine_filter('squared_thumbnail_medium')" alt="{{ ann.colis.image }}" />
-                <h2> <a class="text-secondary text-decoration-none" href="{{ url('app_annone_show', {'id':ann.id}) }}"> {{ ann.colis.objetColis }} </a>  {{ ann.prixProposee }}Dt</h2>
-                <ul style="align-items: baseline" >
-                    <li class="d-flex align-items-center me-3">
-                        <small> Départ :{{ ann.adresseDepart }}</small>
-                    </li>
-                    <li class="d-flex align-items-center me-3">
-                        <small> Arrivée : {{ ann.adresseArrivee }}</small>
-                    </li>
-                    <li class="d-flex align-items-center">
-                        <small>Sortie le : <time datetime="{{ ann.dateProposee|date('Y-m-d H:i') }}">{{ ann.dateProposee|date('Y-m-d H:i') }}</time></small>
-                    </li>
 
-                </ul>
-                <small>By {{ ann.user.prenom }} {{ ann.user.nom }}</small>
-            </article>
-        {% endfor %}
-    {% else %}
-        <p class="h1 text-center"> Pas d'annonce. <a href="{{ path('app_annonce_create') }}">Soyez le premier!</a></p>
 
-    {% endif  %}
 {% endblock %}

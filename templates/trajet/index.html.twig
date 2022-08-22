@@ -12,8 +12,9 @@
                 <div class="col-md-4 pt-4 px-md-2 px-lg-3">
                     <div class="card h-100 px-lg-5 card-span">
                         <div class="card-body d-flex flex-column justify-content-around">
-                            <div class="text-center pt-5">
-                                <h5 class="my-4"  style="font-size: 1rem; width:250px">Format : {{ tr.formatObjet }}</h5>
+                            <div class="text-center pt-5" style="margin-bottom: 19px; margin-top: 19px">
+                                <img src="/assets/img/format/{{ tr.formatObjet }}.png"></img>
+                                <br>
                             </div>
                             <h6 class="mb-0 fs--1 text-1000 fw-medium">De :{{ tr.lieuDepartTrajet }}</h6>
                             <h6 class="mb-0 fs--1 text-1000 fw-medium">À : {{ tr.lieuArriveeTrajet }}</h6>
@@ -24,35 +25,14 @@
                                     {% if app.user %}
                                         {% if app.user.id == tr.user.id %}
                                             <div class="btn-group">
-                                                <button class="btn btn-outline-danger" href="{{ path('app_trajet_edit', {'id': tr.id}) }}" type="submit">Modifier</button>
-                                                <button type="button" class="btn btn-danger "  data-toggle="modal" data-target="#alertsupp"><i class="fa fa-trash"></i></button>
-
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="alertsupp" role="dialog" >
-                                                    <div class="modal-dialog" >
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                ...
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                                <a class="btn btn-outline-danger" href="{{ path('app_trajet_edit', {'id': tr.id}) }}" type="submit">Modifier</a>
+                                                <a type="button" class="btn btn-danger "  data-toggle="modal" data-target="#alertsupp"><i class="fa fa-trash"></i></a>
                                             </div>
-
                                         {% else %}
-                                        <a class="btn btn-outline-danger" href="{{ path('app_trajet_show', {'id':tr.id}) }}" type="submit">Contacter {{ tr.user.nom}} </a>
+                                            <a class="btn btn-outline-danger" href="#" type="submit">Contacter {{ tr.user.nom}} </a>
                                         {% endif %}
+                                    {% else %}
+                                        <a class="btn btn-outline-danger" href="{{ path('app_login') }}" type="submit">Contacter {{ tr.user.nom}} </a>
                                     {% endif %}
                                 </div>
                             </div>

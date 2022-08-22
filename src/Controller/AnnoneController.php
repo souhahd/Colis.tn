@@ -31,14 +31,15 @@ class AnnoneController extends AbstractController
 
         if($request->isMethod('POST'))
         {
-            $data = $request->request->all();
             $annonce= new Annonce();
+            $data = $request->request->all();
             $colis= new Colis();
 
 
 
             if ($this->isCsrfTokenValid('annonce_create',$data['_token'])) {
 
+                $annonce->setUser($this->getUser());
                 $annonce->setAdresseArrivee($data['addressdep']);
                 $annonce->setAdresseDepart($data['addressarr']);
                 $annonce->setPrixProposee($data['prix']);

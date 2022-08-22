@@ -84,7 +84,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-family: "Raleway", "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: 800;
   line-height: 1.2;
-  color: #11111D;
+  color: #00b1c9;
 }
 
 h1, .h1 {
@@ -128,7 +128,7 @@ h4, .h4 {
 }
 
 h5, .h5 {
-  font-size: 1.2rem;
+  font-size: 2rem;
 }
 
 h6, .h6 {
@@ -2876,8 +2876,8 @@ textarea.form-control-lg {
 }
 
 .form-check-input:checked {
-  background-color: #F95C19;
-  border-color: #F95C19;
+  background-color: #27706c;
+  border-color: #27706c;
 }
 
 .form-check-input:checked[type="checkbox"] {
@@ -3545,8 +3545,8 @@ fieldset:disabled .btn {
 .btn-check:checked + .btn-primary:focus,
 .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  -webkit-box-shadow: 0 0 0 0 rgba(250, 116, 59, 0.5);
-  box-shadow: 0 0 0 0 rgba(250, 116, 59, 0.5);
+  -webkit-box-shadow: 0 0 0 0 rgb(80, 180, 176);
+  box-shadow: 0 0 0 0 rgb(58, 166, 160);
 }
 
 .btn-primary:disabled, .btn-primary.disabled {
@@ -4024,25 +4024,25 @@ fieldset:disabled .btn {
 }
 
 .btn-check:focus + .btn-outline-danger, .btn-outline-danger:focus {
-  -webkit-box-shadow: 0 0 0 0 rgba(249, 92, 25, 0.5);
-  box-shadow: 0 0 0 0 rgba(249, 92, 25, 0.5);
+  -webkit-box-shadow: 0 0 0 0 rgb(80, 180, 176);
+  box-shadow: 0 0 0 0 rgb(56, 147, 122);
 }
 
 .btn-check:checked + .btn-outline-danger,
 .btn-check:active + .btn-outline-danger, .btn-outline-danger:active, .btn-outline-danger.active, .btn-outline-danger.dropdown-toggle.show {
   color: #FFFEFE;
-  background-color: #F95C19;
-  border-color: #F95C19;
+  background-color: #50b4b0;
+  border-color: #3aa6a0;
 }
 
 .btn-check:checked + .btn-outline-danger:focus,
 .btn-check:active + .btn-outline-danger:focus, .btn-outline-danger:active:focus, .btn-outline-danger.active:focus, .btn-outline-danger.dropdown-toggle.show:focus {
-  -webkit-box-shadow: 0 0 0 0 rgba(249, 92, 25, 0.5);
-  box-shadow: 0 0 0 0 rgba(249, 92, 25, 0.5);
+  -webkit-box-shadow: 0 0 0 0 rgb(80, 180, 176);
+  box-shadow: 0 0 0 0 rgb(56, 147, 122);
 }
 
 .btn-outline-danger:disabled, .btn-outline-danger.disabled {
-  color: #F95C19;
+  color: #3aa6a0;
   background-color: transparent;
 }
 
@@ -4450,7 +4450,7 @@ fieldset:disabled .btn {
 .dropdown-item.active, .dropdown-item:active {
   color: #FFFEFE;
   text-decoration: none;
-  background-color: #F95C19;
+  background-color: #38937a;
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -4495,7 +4495,7 @@ fieldset:disabled .btn {
 
 .dropdown-menu-dark .dropdown-item.active, .dropdown-menu-dark .dropdown-item:active {
   color: #FFFEFE;
-  background-color: #F95C19;
+  background-color: #38937a;
 }
 
 .dropdown-menu-dark .dropdown-item.disabled, .dropdown-menu-dark .dropdown-item:disabled {
@@ -4668,7 +4668,7 @@ fieldset:disabled .btn {
 }
 
 .nav-link:hover, .nav-link:focus {
-  color: #F95C19;
+  color: #27706c;
   text-decoration: none;
 }
 
@@ -5553,6 +5553,7 @@ fieldset:disabled .btn {
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.5rem;
+  text-align: center;
 }
 
 .alert-heading {
@@ -5629,10 +5630,11 @@ fieldset:disabled .btn {
   color: #95370f;
   background-color: #feded1;
   border-color: #fdceba;
+  text-align: center;
 }
 
 .alert-danger .alert-link {
-  color: #772c0c;
+  color: #f82121;
 }
 
 .alert-light {
@@ -8547,7 +8549,7 @@ fieldset:disabled .btn {
 }
 
 .mb-0 {
-  margin-bottom: 0 !important;
+  margin-bottom: 8px !important;
 }
 
 .mb-1 {
@@ -9124,8 +9126,8 @@ fieldset:disabled .btn {
 }
 
 .py-7 {
-  padding-top: 5rem !important;
-  padding-bottom: 5rem !important;
+  padding-top: 9rem !important;
+  padding-bottom: 8rem !important;
 }
 
 .py-8 {
@@ -9349,7 +9351,7 @@ fieldset:disabled .btn {
 }
 
 .fs--1 {
-  font-size: 0.83333rem !important;
+  font-size: 1.25rem !important;
 }
 
 .fs-0 {
@@ -18465,7 +18467,32 @@ ul {
   box-shadow: none;
   background-color: #F0F4F9;
 }
-
+.mdp {
+  width:100%;
+  position: relative;
+}
+.mdp i {
+  position: absolute;
+  top: 11px;
+  right: 10px;
+  cursor: pointer ;
+}
+.mdp i.active::before {
+  content: '\f070';
+  color: #3b85a0;
+}
+.box .img-box {
+  width: 175px;
+  min-width: 175px;
+  height: 175px;
+  margin-right: 15px;
+  position: relative;
+  -webkit-transition: all 0.1 0.5s;
+  transition: all 0.1 0.5s;
+  border-radius: 100%;
+  border: 5px solid #ffbe33;
+  overflow: hidden;
+}
 /*-----------------------------------------------
 |   User Styles
 -----------------------------------------------*/

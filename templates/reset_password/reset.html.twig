@@ -1,0 +1,47 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Modifier mot de passe{% endblock %}
+
+{% block body %}
+
+    <div class="container mx-auto" style="margin-top: 110px; margin-bottom: 50px">
+        <div class="row">
+            <div class="col-md-6 mx-auto bg-light mt-4 p-4">
+                <form method="post" class="row g-3">
+                    {{ form_start(resetForm) }}
+                    <div class="col-12">
+                        <h1 class="text-danger" style="text-align: center">Modification du  mot de passe</h1>
+                    </div>
+                    <div class="col-12" style="text-align: center">
+                        <a>Pour modifier votre mot de passe, vous devez définir votre nouveau mot de passe.</a>
+                    </div>
+                    <div class="col-12 my-3 mdp" >
+                        {{ form_row(resetForm.plainPassword.first) }}
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <script>
+                           let input = document.querySelector('.mdp input');
+                           let showBtn = document.querySelector('.mdp i');
+                           showBtn.onclick= function(){
+                           if(input.type === "password"){
+                                input.type = "text";
+                                showBtn.classList.add('active');
+                           }else{
+                                input.type = "password";
+                                showBtn.classList.remove('active');
+                                }
+                           }
+                    </script>
+
+                    <div class="col-12 my-3">
+                        {{ form_row(resetForm.plainPassword.second) }}
+                    </div>
+                    <div class="col-12" style="text-align: center">
+                        <button class="btn btn-primary">Modifier mot de passe</button>
+                    </div>
+                    {{ form_end(resetForm) }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

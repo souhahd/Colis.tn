@@ -18,7 +18,7 @@
                                     {{ app.user.nom }}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink" >
-                                    <li><a class="dropdown-item" href="#" style="color: #e1810f">Profil</a></li>
+                                    <li><a class="dropdown-item" href="{{ path('app_user_show' , {'id': app.user.id}) }}" style="color: #e1810f">Profil</a></li>
                                     <li><a class="dropdown-item" href="#" style="color: #e1810f">Messagerie</a></li>
                                     <li><a class="dropdown-item" href="{{ path('app_logout') }}" style="color: #e1810f">Se deconnecter</a></li>
                                 </ul>
@@ -34,4 +34,6 @@
 
         </div>
     </div>
+    {{ include('layouts/partials/_flash_messages.html.twig') }}
 </nav>
+

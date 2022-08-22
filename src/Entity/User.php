@@ -40,12 +40,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="json")
      */
-    private $roles = [];
+    private $roles = ['ROLE_USER'];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="Le mot de passe est Vide!")
      */
     private $password;
 
@@ -89,7 +88,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $image;
 
-    private $pleinPassword;
+    private $plainPassword;
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
@@ -294,17 +293,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @return mixed
      */
-    public function getPleinPassword(): ?string
+    public function getPlainPassword(): ?string
     {
-        return $this->pleinPassword;
+        return $this->plainPassword;
     }
 
     /**
-     * @param mixed $pleinPassword
+     * @param mixed $plainPassword
      */
-    public function setPleinPassword($pleinPassword): self
+    public function setPlainPassword($plainPassword): self
     {
-        $this->pleinPassword = $pleinPassword;
+        $this->plainPassword = $plainPassword;
         return $this;
     }
 

@@ -7,6 +7,7 @@ use App\Form\TrajetFormType;
 use App\Repository\TrajetRepository;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use http\Client\Curl\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,11 +22,15 @@ class TrajetController extends AbstractController
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $trajet = new Trajet();
+
+
         $form = $this->createForm(TrajetFormType::class, $trajet);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
             $trajet=$form->getData();
+            $trajet->setUser($this->getUser());
+
             $em->persist($trajet);
             $em->flush();
             $this->addFlash('success','Trajet a été crée avec success.');
@@ -59,7 +64,7 @@ class TrajetController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->flush();
             $this->addFlash('success','Trajet a été modifié avec success.');
-            return $this->render('trajet/show.html.twig',compact('trajet'));
+            return $this->render('index.html.twig');
 
         }
         return $this->render('trajet/edit.html.twig', ['trajetForm' => $form->createView(),'trajet'=>$trajet]);

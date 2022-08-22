@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +13,7 @@ class SuperAdminController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('super_admin/index.html.twig', [
-            'controller_name' => 'SuperAdminController',
-        ]);
+        return $this->render('super_admin/index.html.twig');
     }
     /**
      * @Route("/super/admin/login", name="app_super_admin_login")

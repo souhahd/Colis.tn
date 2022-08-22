@@ -1,0 +1,17 @@
+<h3>Demande de réinitialisation de mot de passe</h3>
+
+<p> Bonjour ,
+
+    Vous avez demandé la réinitialisation de votre mot de passe associé à votre compte CampusFrance.
+
+    Pour cela, veuillez cliquer sur le lien suivant :</p>
+
+<a href="{{ url('app_reset_password', {token: resetToken.token}) }}">{{ url('app_reset_password', {token: resetToken.token}) }}</a>
+<p>Si le lien ne s'affiche pas correctement, copier le texte ci-dessus dans la barre de votre navigateur.
+
+</p>
+<p>Attention, ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+
+<p>Cordialement,
+<hr>
+Ce message a été envoyé automatiquement. Nous vous remercions de ne pas répondre.</p>

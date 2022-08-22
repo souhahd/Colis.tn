@@ -1,0 +1,105 @@
+{% extends 'super_admin/admin_layouts/base.html.twig' %}
+{% block title %} Liste des annonces{% endblock %}
+{% block body %}
+
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-wrapper">
+            <div class="pcoded-content">
+                <div class="pcoded-inner-content">
+                    <!-- [ breadcrumb ] start -->
+                    <div style="margin-bottom: 3px;">
+                        <a href="#!" class="label theme-bg text-white f-12">Ajouter annonce</a>
+                    </div>
+                    <!-- [ breadcrumb ] end -->
+                    <div class="main-body">
+
+                        <div class="page-wrapper">
+
+                            <!-- [ Main Content ] start -->
+                            <div class="row">
+
+                                <div class="col-xl-8 col-md-12 m-b-30">
+                                    <div class="tab-content" id="myTabContent" style="width: 78rem; margin-left: 3rem;">
+
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>User</th>
+                                                <th>Email</th>
+                                                <th>Objet</th>
+                                                <th>Dimension & PU</th>
+                                                <th>Départ</th>
+                                                <th>Arrivé</th>
+                                                <th>Date de départ</th>
+                                                <th>Prix proposé</th>
+
+
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                            </thead>
+                                            {% for annonce in annonces  %}
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        {% if annonce.user.image == NULL %}
+                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;" src="/admin/images/user/avatar-1.jpg" alt="activity-user"></h6>
+                                                        {% else %}
+                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;height: 50px;" src="/uploads/users/{{ annonce.user.image }}" alt="activity-user"></h6>
+                                                        {% endif %}
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ annonce.user.email }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ annonce.colis.objetColis }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ annonce.colis.largeurColis }}X{{ annonce.colis.longeurColis }}X{{ annonce.colis.hauteurColis }} & {{ annonce.colis.poidsUnitaireColis }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ annonce.adresseDepart }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ annonce.adresseArrivee }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ annonce.dateProposee|date('Y-m-d H:i') }}</h6>
+                                                    </td>
+                                                    <td>
+                                                        <h6 class="m-0">{{ annonce.prixProposee }} DT</h6>
+                                                    </td>
+
+                                                    <td>
+                                                        <a href="#!" class="label theme-bg text-white f-12">Éditer</a>
+                                                        <a href="#!" class="label theme-bg2 text-white f-12">Supprimer</a>
+                                                        <a href="#!" class="label theme-bg text-white f-12">Archiver</a>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

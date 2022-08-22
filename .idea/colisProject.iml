@@ -121,6 +121,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/intl" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-uuid" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/uid" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mercuryseries/flashy-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfonycasts/reset-password-bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
