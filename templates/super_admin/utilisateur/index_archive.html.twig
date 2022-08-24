@@ -1,5 +1,5 @@
 {% extends 'super_admin/admin_layouts/base.html.twig' %}
-{% block title %} Liste des trajets{% endblock %}
+{% block title %} Liste des utilisateurs d'archive {% endblock %}
 {% block body %}
 
     <!-- [ Pre-loader ] start -->
@@ -18,9 +18,7 @@
             <div class="pcoded-content">
                 <div class="pcoded-inner-content">
                     <!-- [ breadcrumb ] start -->
-                    <div style="margin-bottom: 19px; margin-left: 1130px;">
-                        <a href="{{ path('app_add_trajet')}}" class="label theme-bg text-white f-16" >Ajouter trajet</a>
-                    </div>
+
                     <!-- [ breadcrumb ] end -->
                     <div class="main-body">
                         <div class="page-wrapper">
@@ -34,39 +32,46 @@
                                             <tr>
                                                 <th>User</th>
                                                 <th>Email</th>
-                                                <th>Départ</th>
-                                                <th>Arrivé</th>
-                                                <th>Date de départ</th>
-                                                <th class="text-left">Action</th>
+                                                <th>Date de naissane</th>
+                                                <th>Genre</th>
+                                                <th>Adresse</th>
+                                                <th>Status</th>
+                                                <th class="text-center">Action</th>
                                             </tr>
                                             </thead>
-                                            {% for trajet in trajets  %}
+                                            {% for user in users  %}
                                                 <tbody>
                                                 <tr>
                                                     <td>
-                                                        {% if trajet.user.image == NULL %}
-                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;" src="/admin/images/user/avatar-1.jpg" alt="activity-user">{{ trajet.user.nom }} {{ trajet.user.prenom }}</h6>
+                                                        {% if user.image == NULL %}
+                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;" src="/admin/images/user/avatar-1.jpg" alt="activity-user">{{ user.nom }} {{ user.prenom }}</h6>
                                                         {% else %}
-                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;height: 50px;" src="/uploads/users/{{ trajet.user.image }}" alt="activity-user">{{ trajet.user.nom }} {{ trajet.user.prenom }}</h6>
+                                                            <h6 class="m-0"><img class="rounded-circle m-r-10" style="width:40px;height: 50px;" src="/uploads/users/{{ user.image }}" alt="activity-user">{{ user.nom }} {{ user.prenom }}</h6>
                                                         {% endif %}
                                                     </td>
                                                     <td>
-                                                        <h6 class="m-0">{{ trajet.user.email }}</h6>
+                                                        <h6 class="m-0">{{ user.email }}</h6>
                                                     </td>
                                                     <td>
 
-                                                        <h6 class="m-0">{{ trajet.lieuDepartTrajet }}</h6>
+                                                        <h6 class="m-0">{{ user.dateNaissance|date('d-m-Y') }}</h6>
                                                     </td>
                                                     <td>
-                                                        <h6 class="m-0">{{ trajet.lieuArriveeTrajet }}</h6>
+                                                        <h6 class="m-0">{{ user.genre }}</h6>
                                                     </td>
                                                     <td>
-                                                        <h6 class="m-0">{{ trajet.dateDepart|date('Y-m-d H:i') }}</h6>
+                                                        <h6 class="m-0">{{ user.adresse }}</h6>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        {% if user.verified == 1 %}
+                                                            <i class="fas fa-circle text-c-green f-10"></i>
+                                                        {% else %}
+                                                            <i class="fas fa-circle text-c-red f-10"></i>
+                                                        {% endif %}
                                                     </td>
                                                     <td>
-                                                        <a href="{{ path('app_edit_trajet',{'id': trajet.id}) }}" class="label theme-bg text-white f-12">Éditer</a>
                                                         <button type="button" class="label theme-bg2 text-white f-12 deletebtn">Supprimer</button>
-
+                                                        <button type="button" class="label theme-bg text-white f-12 desarchivebtn">Desarchiver</button>
                                                         <!-- ##################################################################### -->
                                                         <!-- delete pop up form -->
                                                         <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,21 +79,49 @@
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="exampleModalLabel">
-                                                                            Supprimer trajet
+                                                                            Supprimer Utilisateur
                                                                         </h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <form action="{{ path('app_trajet_deletebyadmin',{'id': trajet.id}) }}" method="POST">
+                                                                    <form action="{{ path('app_user_delete', {'id': user.id}) }}" method="POST">
                                                                         <div class="modal-body">
                                                                             <input type="hidden" name="delete_id" id="delete_id">
-                                                                            <input type="hidden" name="csrf_token" value="{{ csrf_token('trajet_deletion_' ~ trajet.id) }}">
-                                                                            <h4>VOULEZ-VOUS SUPPRIMER CE TRAJET ?</h4>
+                                                                            <input type="hidden" name="csrf_token" value="{{ csrf_token('user_deletion_' ~ user.id) }}">
+                                                                            <h4>VOULEZ-VOUS SUPPRIMER CET UTILISATEUR ?</h4>
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
                                                                             <button type="submit" name="deleteuser" class="btn btn-primary">OUI</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- ##################################################################### -->
+                                                        <!-- ##################################################################### -->
+                                                        <!-- Archive pop up form -->
+                                                        <div class="modal fade" id="upmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">
+                                                                            Desarchiver Utilisateur!
+                                                                        </h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <form action="{{ path('app_up_user', {'id': user.id}) }}" method="POST">
+                                                                        <div class="modal-body">
+                                                                            <input type="hidden" name="delete_id" id="delete_id">
+                                                                            <input type="hidden" name="csrf_token" value="{{ csrf_token('user_up_' ~ user.id) }}">
+                                                                            <h4>VOULEZ-VOUS DÉSARCHIVER  {{ user.nom}} ?</h4>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                                                            <button type="submit" name="archiveuser" class="btn btn-primary">OUI</button>
                                                                         </div>
                                                                     </form>
                                                                 </div>
@@ -96,39 +129,7 @@
                                                         </div>
                                                         <!-- ##################################################################### -->
 
-                                                        {% if trajet.showed == 1 %}
-                                                            <button type="button" class="label theme-bg text-white f-12 downbtn">Archiver</button>
-                                                        {% else %}
-                                                            <button type="button" class="label theme-bg text-white f-12 downbtn">Désarchiver</button>
-                                                        {% endif %}
-                                                        <!-- ##################################################################### -->
-                                                        <!-- delete pop up form -->
-                                                        <div class="modal fade" id="downmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">
-                                                                            Archiver trajet!
-                                                                        </h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <form action="{{ path('app_down_trajet',{'id': trajet.id}) }}" method="POST">
-                                                                        <div class="modal-body">
-                                                                            <input type="hidden" name="delete_id" id="delete_id">
-                                                                            <input type="hidden" name="csrf_token" value="{{ csrf_token('trajet_down_' ~ trajet.id) }}">
-                                                                            <h4>VOULEZ-VOUS ARCHIVER LE TRAJET DE {{ trajet.user.nom}} ?</h4>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
-                                                                            <button type="submit" name="deleteuser" class="btn btn-primary">OUI</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- ##################################################################### -->
+
 
                                                     </td>
                                                 </tr>
@@ -149,6 +150,7 @@
         </div>
     </div>
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
@@ -166,11 +168,13 @@
     <script>
         $(document).ready(function (){
 
-            $('.downbtn').on('click', function (){
-                $('#downmodal').modal('show');
+            $('.desarchivebtn').on('click', function (){
+                $('#upmodal').modal('show');
 
             });
         });
 
     </script>
+
+
 {% endblock %}

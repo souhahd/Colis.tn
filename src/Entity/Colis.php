@@ -12,6 +12,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=ColisRepository::class)
  * @Vich\Uploadable
+ * @ORM\HasLifecycleCallbacks
  */
 class Colis
 {

@@ -18,8 +18,8 @@
             <div class="pcoded-content">
                 <div class="pcoded-inner-content">
                     <!-- [ breadcrumb ] start -->
-                    <div style="margin-bottom: 3px;">
-                        <a href="#!" class="label theme-bg text-white f-12">Ajouter utilisateur</a>
+                    <div style="margin-bottom: 19px; margin-left: 1130px;">
+                        <a href="{{ path('app_user_create') }}" class="label theme-bg text-white f-16">Ajouter utilisateur</a>
                     </div>
                     <!-- [ breadcrumb ] end -->
                     <div class="main-body">
@@ -38,7 +38,7 @@
                                                         <th>Genre</th>
                                                         <th>Adresse</th>
                                                         <th>Status</th>
-                                                        <th class="text-left">Action</th>
+                                                        <th class="text-center">Action</th>
                                                     </tr>
                                                     </thead>
                                                     {% for user in users  %}
@@ -72,9 +72,37 @@
                                                                     {% endif %}
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#!" class="label theme-bg text-white f-12">Éditer</a>
-                                                                    <a href="#!" class="label theme-bg2 text-white f-12">Avertir</a>
-                                                                    <a href="#!" class="label theme-bg text-white f-12">Supprimer</a>
+                                                                    <a href="{{ path('app_userbyid_edit',{'id': user.id}) }}" class="label theme-bg text-white f-12">Éditer</a>
+                                                                    <a href="{{ path('app_user_avertir',{'id': user.id}) }}" class="label theme-bg2 text-white f-12">Avertir</a>
+                                                                    <button type="button" class="label theme-bg text-white f-12 deletebtn">Supprimer</button>
+                                                                    <!-- ##################################################################### -->
+                                                                    <!-- delete pop up form -->
+                                                                    <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                                                        Supprimer Utilisateur
+                                                                                    </h5>
+                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <form action="{{ path('app_user_delete', {'id': user.id}) }}" method="POST">
+                                                                                    <div class="modal-body">
+                                                                                        <input type="hidden" name="delete_id" id="delete_id">
+                                                                                        <input type="hidden" name="csrf_token" value="{{ csrf_token('user_deletion_' ~ user.id) }}">
+                                                                                        <h4>VOULEZ-VOUS SUPPRIMER CET UTILISATEUR ?</h4>
+                                                                                    </div>
+                                                                                    <div class="modal-footer">
+                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NON</button>
+                                                                                        <button type="submit" name="deleteuser" class="btn btn-primary">OUI</button>
+                                                                                    </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!-- ##################################################################### -->
                                                                 </td>
                                                             </tr>
                                                             </tbody>
@@ -93,6 +121,22 @@
             </div>
         </div>
     </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function (){
+
+            $('.deletebtn').on('click', function (){
+                $('#deletemodal').modal('show');
+
+            });
+        });
+
+    </script>
 
 
 {% endblock %}

@@ -66,7 +66,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
       * @return User[] Returns an array of User objects
       */
 
-        public function findByRole($role)
+     public function findByRole($role)
     {
         $qb = $this->_em->createQueryBuilder();
         $qb->select('u')
@@ -77,16 +77,55 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $qb->getQuery()->getResult();
     }
 
-
-    /*
-    public function findOneBySomeField($value): ?User
+    public function findOneByEmail($email)
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $q = $this->createQueryBuilder('c')
+            ->where('c.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery();
+        return $q->getOneOrNullResult(); // will return only one result or null 'getResult' will return a collection
     }
-    */
+
+
+    /**
+     * @return User[] Returns an array of User objects
+     */
+
+    public function findAllUsersArchive( $roles)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u')
+            ->from($this->_entityName, 'u')
+            ->where('u.roles LIKE :roles')
+            ->andWhere('u.isActive = 0')
+            ->setParameter('roles', '%"'.$roles.'"%');
+
+        return $qb->getQuery()->getResult();
+    }
+    /**
+     * @return User[] Returns an array of User objects
+     */
+
+    public function findAllUsersAverti( $roles)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u')
+            ->from($this->_entityName, 'u')
+            ->where('u.roles LIKE :roles')
+            ->andWhere('u.nombreAvertis > 0')
+            ->setParameter('roles', '%"'.$roles.'"%');
+
+        return $qb->getQuery()->getResult();
+    }
+    public function findAllUsersBanni( $roles)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('u')
+            ->from($this->_entityName, 'u')
+            ->where('u.roles LIKE :roles')
+            ->andWhere('u.isBannir = 1')
+            ->setParameter('roles', '%"'.$roles.'"%');
+
+        return $qb->getQuery()->getResult();
+    }
 }

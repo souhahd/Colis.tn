@@ -45,6 +45,23 @@ class TrajetRepository extends ServiceEntityRepository
         }
     }
 
+
+
+    /**
+     * @return Trajet[] Returns an array of Trajet objects
+     */
+
+    public function findAllTrajetArchive()
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('t')
+            ->from($this->_entityName, 't')
+            ->Where('t.showed = 0');
+
+        return $qb->getQuery()->getResult();
+    }
+
+
     // /**
     //  * @return Trajet[] Returns an array of Trajet objects
     //  */

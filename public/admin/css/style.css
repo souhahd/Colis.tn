@@ -8235,6 +8235,8 @@ a.btn-theme.active {
 .alert-success {
   color: #299b85;
   border-color: #c0f9eb;
+  text-align: center;
+  font-size: x-large;
 }
 .alert-success hr {
   border-top-color: #a9f7e4;
@@ -8246,6 +8248,8 @@ a.btn-theme.active {
 .alert-info {
   color: #3b85a0;
   border-color: #c9edf9;
+  text-align: center;
+  font-size: x-large;
 }
 .alert-info hr {
   border-top-color: #b2e5f6;
@@ -8257,6 +8261,8 @@ a.btn-theme.active {
 .alert-warning {
   color: #99873c;
   border-color: #fceec4;
+  text-align: center;
+  font-size: x-large;
 }
 .alert-warning hr {
   border-top-color: #fbe7ac;
@@ -8267,7 +8273,9 @@ a.btn-theme.active {
 
 .alert-danger {
   color: #994442;
-  border-color: #fccac7;
+  border-color: #fccac7;  text-align: center;
+  font-size: x-large;
+
 }
 .alert-danger hr {
   border-top-color: #fbb3af;
@@ -8279,6 +8287,8 @@ a.btn-theme.active {
 .alert-light {
   color: #98a0a4;
   border-color: #fbfbfb;
+  text-align: center;
+  font-size: x-large;
 }
 .alert-light hr {
   border-top-color: #eeeeee;
@@ -8290,6 +8300,8 @@ a.btn-theme.active {
 .alert-dark {
   color: #37474f;
   border-color: #c7cbce;
+  text-align: center;
+  font-size: x-large;
 }
 .alert-dark hr {
   border-top-color: #b9bec2;

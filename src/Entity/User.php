@@ -113,10 +113,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $annonces;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isActive=1;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nombreAvertis=0;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isBannir=0;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Trajet::class, mappedBy="userExp")
+     */
+    private $trajetDone;
+
     public function __construct()
     {
         $this->trajets = new ArrayCollection();
         $this->annonces = new ArrayCollection();
+        $this->trajetDone = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -393,6 +414,72 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($annonce->getUser() === $this) {
                 $annonce->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getNombreAvertis(): ?int
+    {
+        return $this->nombreAvertis;
+    }
+
+    public function setNombreAvertis(?int $nombreAvertis): self
+    {
+        $this->nombreAvertis = $nombreAvertis;
+
+        return $this;
+    }
+
+    public function getIsBannir(): ?bool
+    {
+        return $this->isBannir;
+    }
+
+    public function setIsBannir(?bool $isBannir): self
+    {
+        $this->isBannir = $isBannir;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Trajet>
+     */
+    public function getTrajetDone(): Collection
+    {
+        return $this->trajetDone;
+    }
+
+    public function addTrajetDone(Trajet $trajetDone): self
+    {
+        if (!$this->trajetDone->contains($trajetDone)) {
+            $this->trajetDone[] = $trajetDone;
+            $trajetDone->setUserExp($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTrajetDone(Trajet $trajetDone): self
+    {
+        if ($this->trajetDone->removeElement($trajetDone)) {
+            // set the owning side to null (unless already changed)
+            if ($trajetDone->getUserExp() === $this) {
+                $trajetDone->setUserExp(null);
             }
         }
 

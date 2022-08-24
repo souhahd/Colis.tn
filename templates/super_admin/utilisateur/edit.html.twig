@@ -1,0 +1,56 @@
+{% extends 'super_admin/admin_layouts/base.html.twig' %}
+{% block title %} Modifier utilisateur{% endblock %}
+{% block body %}
+    <div class="container" style="margin-top: -2.5rem; padding: -1.5rem;">
+            <div class="row">
+                <div class="col-md-6 mx-auto bg-light mt-4 p-4">
+                    <form method="post" class="row g-3" novalidate>
+                        <input type="hidden" name="_token" value="{{ csrf_token('edit_register') }}">
+                        <div class="col-12">
+                            <h1 class="text-danger" style="text-align: center">Modifier profil</h1>
+                        </div>
+                        {% for flash_error in app.flashes('verify_email_error') %}
+                            <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                        {% endfor %}
+
+                        {{ form_start(userForm) }}
+                        <div class="col-12" aria-placeholder="Nom">
+                            {{ form_row(userForm.nom) }}
+                        </div>
+
+                        <div class="col-12">
+                            {{ form_row(userForm.prenom) }}
+                        </div>
+
+                        <div class="col-12">
+                            {{ form_row(userForm.genre) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(userForm.dateNaissance) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(userForm.adresse) }}
+                        </div>
+                        <div class="col-12">
+                            {{ form_row(userForm.telephone) }}
+                        </div>
+
+                        <div class="col-12" style="display: flex; justify-content: center; justify-items: center">
+                            <input class="btn btn-lg btn-primary float-end" type="submit"  value="Modifier" formnovalidate style="margin-right: 50px">
+
+
+
+
+                        </div>
+                        {{ form_end(userForm) }}
+
+
+
+
+
+                    </form>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}

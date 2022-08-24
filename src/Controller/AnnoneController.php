@@ -55,12 +55,12 @@ class AnnoneController extends AbstractController
                 $colis->setDescriptionColis($data['description']);
             }
             $em->persist($colis);
-            $annonce->addIdColi($colis);
+            $annonce->setColis($colis);
 
             $em->persist($annonce);
             $em->flush();
-
-            return $this->redirectToRoute('app_annone_show',['id'=> $annonce->getId()]);
+            $this->addFlash('success','Annonce a été crée avec success.');
+            return $this->redirectToRoute('app_annonce');
 
 
         }else{
@@ -89,7 +89,7 @@ class AnnoneController extends AbstractController
         if($request->isMethod('POST')) {
             $data = $request->request->all();
 
-            $colis = $em->getRepository(Colis::class)->find(['id'=>$annonce->getIdColis()->get('0')->getId()]);
+            $colis = $em->getRepository(Colis::class)->find(['id'=>$annonce->getColis()->getId()]);
 
             if ($this->isCsrfTokenValid('annonce_edit', $data['_token'])) {
                 $annonce->setAdresseArrivee($data['addressdep']);
@@ -111,12 +111,12 @@ class AnnoneController extends AbstractController
                 $colis->setDescriptionColis($data['description']);
 
 
-                $annonce->addIdColi($colis);
+                $annonce->setColis($colis);
 
             }
             $em->flush();
             $this->addFlash('success','Annonce a été modifié avec success.');
-            return $this->redirectToRoute('app_annone_show',['id'=> $annonce->getId()]);
+            return $this->redirectToRoute('app_annonce');
         }else{
             return $this->render('annonce/edit.html.twig', compact('annonce'));
 

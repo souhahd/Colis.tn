@@ -47,8 +47,8 @@ class Trajet
     private $detourMaxTrajet;
 
     /**
-     * @ORM\Column(type="date")
      *
+     * @ORM\Column(type="datetime")
      */
     private $dateDepart;
 
@@ -63,6 +63,16 @@ class Trajet
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showed=1;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="trajetDone")
+     */
+    private $userExp;
 
 
 
@@ -112,7 +122,7 @@ class Trajet
         return $this->dateDepart;
     }
 
-    public function setDateDepart(?\DateTimeInterface $dateDepart): self
+    public function setDateDepart(\DateTimeInterface $dateDepart): self
     {
         $this->dateDepart = $dateDepart;
 
@@ -139,6 +149,30 @@ class Trajet
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getShowed(): ?bool
+    {
+        return $this->showed;
+    }
+
+    public function setShowed(?bool $showed): self
+    {
+        $this->showed = $showed;
+
+        return $this;
+    }
+
+    public function getUserExp(): ?User
+    {
+        return $this->userExp;
+    }
+
+    public function setUserExp(?User $userExp): self
+    {
+        $this->userExp = $userExp;
 
         return $this;
     }

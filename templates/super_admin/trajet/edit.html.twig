@@ -1,0 +1,54 @@
+{% extends 'super_admin/admin_layouts/base.html.twig' %}
+{% block title %} Éditer Trajet{% endblock %}
+{% block body %}
+    <div class="container" style="margin-top: -2.5rem; padding: -1.5rem;">
+        <div class="row">
+            <div class="col-md-6 mx-auto bg-light mt-4 p-4">
+                <form method="post" class="row g-3" novalidate>
+                    <input type="hidden" name="_token" value="{{ csrf_token('trajet_edit') }}">
+                    <div class="col-12">
+                        <h1 class="text-danger" style="text-align: center">Modifier un trajet</h1>
+                    </div>
+
+                    {% for flash_error in app.flashes('verify_email_error') %}
+                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                    {% endfor %}
+
+                    {{ form_start(trajetForm) }}
+                    <div class="col-12">
+                        {{ form_row(trajetForm.lieuDepartTrajet) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(trajetForm.lieuArriveeTrajet) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(trajetForm.detourMaxTrajet) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(trajetForm.dateDepart) }}
+                    </div>
+
+                    <div class="col-12">
+                        {{ form_row(trajetForm.formatObjet) }}
+                    </div>
+
+
+
+
+                    <div class="col-12" style="text-align: center">
+                        <button class="btn btn-lg btn-primary float-end" type="submit" formnovalidate >
+                            Modifier
+                        </button>
+
+                    </div>
+                    {{ form_end(trajetForm) }}
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
